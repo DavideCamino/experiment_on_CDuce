@@ -1,0 +1,33 @@
+include "merge.cd";;
+
+let fashion = loadOntology "europeana_formatted.rdf";;
+let people = loadOntology "people.rdf";;
+let society = loadOntology "society.rdf";;
+
+let materials = subClassesRec <owl:Class rdf:about="http://thesaurus.europeanafashion.eu/thesaurus/10346"> [] fashion;;
+let fashionObjects = subClassesRec <owl:Class rdf:about="http://thesaurus.europeanafashion.eu/thesaurus/10000"> [] fashion;;
+let artificialMats = subClassesRec <owl:Class rdf:about="http://thesaurus.europeanafashion.eu/thesaurus/10358"> [] fashion;;
+
+let newMaterials : [Class*] = select x from x in materials
+									 where (not contains x artificialMats);;
+
+let newFashionIndividual : [Individual*] = select x from x in [fashion]/Individual
+													 where (not isArtificial x materials artificialMats fashion);;
+													 
+let socPeople = head ([society]/<owl:Class rdf:about="http://www.semanticweb.org/society#people"> _) :? Class;; 
+
+let newSociety : [Thing*] = select x from x in [society]/(Thing \ Ont)
+								 where (not x = socPeople);;
+
+let socPeople :? Class = match socPeople with <owl:Class rdf:about=str> [ (attr::ClassAtt)* ] -> <owl:Class rdf:about=str>   (attr  @ [ <owl:equivalentClass rdf:resource="http://www.people#People"> [] ]) ;;
+
+let newPeople : [Thing*] = [people]/(Thing \ Ont);;
+
+let newOnt :? Ont = <owl:Ontology rdf:about="http://www.semanticweb.org/society_merged"> [];;
+
+let newThing : [Thing*] = [ newOnt ] @ newSociety @ [ socPeople ] @ newFashionIndividual @  newMaterials @ newPeople;;
+
+
+let newOntology :? Ontology = <rdf:RDF xml:base="http://www.semanticweb.org/society_merged">  newThing ;;
+
+dump_to_file_utf8 "society_merged.rdf" (print_xml_utf8 newOntology);;

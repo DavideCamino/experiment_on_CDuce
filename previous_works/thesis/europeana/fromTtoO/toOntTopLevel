@@ -1,0 +1,7 @@
+let fashion :? Thesaurus = load_xml "thesaurus.rdf";;
+
+let newClass = map [fashion]/Desc with x -> transformClass x
+in
+let newOnt : Ontology = <rdf:RDF xml:base="http://www.semanticweb.org/OntEur"> ( [ <owl:Ontology rdf:about="OntEur"> [ ] ] @ newClass )
+in
+dump_to_file_utf8 "Ontologia.rdf" (print_xml_utf8 newOnt)

@@ -1,0 +1,28 @@
+include "TheOnt.cd"
+
+let fun conceptToClass (Desc -> Class)
+	<rdf:Description rdf:about=ab> [ (descAttr :: DescAtt)* ] ->
+	let classAttr = transform descAttr with 
+		| <skos:prefLabel xml:lang=l> lab -> [<rdfs:label xml:lang=l> lab]
+		| <skos:altLabel xml:lang=l> lab  -> [<rdfs:label xml:lang=l> lab]
+		| <skos:scopeNote xml:lang=l> note -> [<skos:scopeNote xml:lang=l> note]
+		| <skos:exactMatch rdf:resource=res> [] -> [<skos:exactMatch rdf:resource=res> []]
+		| <skos:broader rdf:resource=res> [] -> [<rdfs:subClassOf rdf:resource=res> []]
+	in
+	<owl:Class rdf:about=ab> classAttr
+
+let fun thesaurusToOntology (Thesaurus -> Ontology)
+	<rdf:RDF>[ (concepts :: Desc) * ] ->
+	let newClasses = map concepts with <rdf:Description rdf:about=ab> [ (descAttr :: DescAtt)* ] ->
+		let classAttr = transform descAttr with
+			| x & ScopeNote -> [x]
+			| x & ExactMatch -> [x]
+			| <skos:prefLabel xml:lang=l> lab -> [<rdfs:label xml:lang=l> lab]
+			| <skos:altLabel xml:lang=l> lab  -> [<rdfs:label xml:lang=l> lab]
+			| <skos:broader rdf:resource=res> [] -> [<rdfs:subClassOf rdf:resource=res> []]
+		in
+		<owl:Class rdf:about=ab> classAttr
+	in
+	<rdf:RDF xml:base="http://www.semanticweb.org/OntEur"> ( [ <owl:Ontology rdf:about="OntEur"> [ ] ] @ newClasses );;
+
+	

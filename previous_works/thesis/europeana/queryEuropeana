@@ -1,0 +1,68 @@
+(*Descrizione del legno*)
+let sel1 = select x
+	from x in [fashion]/Desc,
+	     y in [x]/PrefLabel
+	where (y = <skos:prefLabel xml:lang="en"> "wood");;
+
+(*Padre del legno*)
+let sel = select y
+	from x in [fashion]/Desc,
+	     y in [x]/Broader,
+	     z in [x]/PrefLabel
+	where (z = <skos:prefLabel xml:lang="en"> "wood")
+in
+let ab = flatten (map sel with x -> boarderToString x)
+in
+let desc = [fashion]/Desc in
+transform desc with x ->
+	match x with
+	| <rdf:Description rdf:about=about>[(x::Attribute)*] -> 
+	if about = ab then [x] else []
+	
+
+
+
+(*Tutti i fratelli del legno in italiano*)
+let sel = select y
+	from x in [fashion]/Desc,
+	     y in [x]/Broader,
+	     z in [x]/PrefLabel
+	where (z = <skos:prefLabel xml:lang="en"> "wood")
+in
+let descd = map sel with broader ->
+select x
+from x in [fashion]/Desc,
+     y in [x]/Broader
+where (y = broader)
+in 
+let desc = flatten descd
+in
+desc/<skos:prefLabel xml:lang="it">_
+
+(*Tutti i padri del legno*)
+let sel = select y
+	from x in [fashion]/Desc,
+	     y in [x]/Broader,
+	     z in [x]/PrefLabel
+	where (z = <skos:prefLabel xml:lang="en"> "wood")
+in
+let about = map sel with x -> boarderToString x
+in
+let desc = [fashion]/Desc 
+in
+map about with ab ->
+transform desc with x ->
+	match x with
+	| <rdf:Description rdf:about=a>[ _* ] -> 
+	if a = ab then [x] else []
+	
+(*Esempi errori*)
+[fashion]/PrefLabel
+
+let desc = [fashion]/Desc
+in
+[desc]/<skos:prefLabel xml:lang="it"> _
+
+let desc = [fashion]/Desc
+in
+desc/<skos:prefLabel xml:lang="itsgerg"> _

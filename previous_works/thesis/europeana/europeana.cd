@@ -1,0 +1,21 @@
+namespace skos="http://www.w3.org/2004/02/skos/core#"
+namespace rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#";;
+
+type Thesaurus = <rdf:RDF>[Desc *]
+type Desc = <rdf:Description rdf:about=String>[Attribute *]
+type Attribute = AltLabel | InScheme | PrefLabel | ScopeNote | ExactMatch | Broader | Type
+type AltLabel = <skos:altLabel xml:lang=String> String
+type InScheme = <skos:inScheme rdf:resource=String> []
+type PrefLabel = <skos:prefLabel xml:lang=String> String
+type ScopeNote = <skos:scopeNote xml:lang=String> String
+type ExactMatch = <skos:exactMatch rdf:resource=String> []
+type Broader = <skos:broader rdf:resource=String> []
+type Type = <rdf:type rdf:resource=String> [];;
+
+let fun boarderToString (Broader -> String)
+<skos:broader rdf:resource=res>[]  -> res;;
+
+
+let fashion :? Thesaurus = load_xml "thesaurus.rdf"
+
+

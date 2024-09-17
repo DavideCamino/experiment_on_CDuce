@@ -1,0 +1,267 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.semanticweb.org/dadi/ontologies/2023/8/untitled-ontology-54/"
+     xml:base="http://www.semanticweb.org/dadi/ontologies/2023/8/untitled-ontology-54/"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:www="http://www.people#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+    <owl:Ontology rdf:about="http://www.people"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.people#marry -->
+
+    <owl:ObjectProperty rdf:about="http://www.people#marry">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#SymmetricProperty"/>
+        <rdfs:domain rdf:resource="http://www.people#People"/>
+        <rdfs:range rdf:resource="http://www.people#People"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.people#parent_of -->
+
+    <owl:ObjectProperty rdf:about="http://www.people#parent_of">
+        <owl:inverseOf rdf:resource="http://www.people#son_of"/>
+        <rdfs:domain rdf:resource="http://www.people#People"/>
+        <rdfs:range rdf:resource="http://www.people#People"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.people#son_of -->
+
+    <owl:ObjectProperty rdf:about="http://www.people#son_of">
+        <rdfs:domain rdf:resource="http://www.people#People"/>
+        <rdfs:range rdf:resource="http://www.people#People"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.people#birth_year -->
+
+    <owl:DatatypeProperty rdf:about="http://www.people#birth_year">
+        <rdfs:domain rdf:resource="http://www.people#People"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.people#death_year -->
+
+    <owl:DatatypeProperty rdf:about="http://www.people#death_year">
+        <rdfs:domain rdf:resource="http://www.people#People"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.people#Married -->
+
+    <owl:Class rdf:about="http://www.people#Married">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.people#marry"/>
+                <owl:someValuesFrom rdf:resource="http://www.people#People"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.people#People"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.people#Parents -->
+
+    <owl:Class rdf:about="http://www.people#Parents">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.people#parent_of"/>
+                <owl:someValuesFrom rdf:resource="http://www.people#People"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.people#People"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.people#People -->
+
+    <owl:Class rdf:about="http://www.people#People"/>
+    
+
+
+    <!-- http://www.people#Sons -->
+
+    <owl:Class rdf:about="http://www.people#Sons">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.people#son_of"/>
+                <owl:someValuesFrom rdf:resource="http://www.people#People"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.people#People"/>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.people#berengaria_navarra -->
+
+    <owl:NamedIndividual rdf:about="http://www.people#berengaria_navarra">
+        <rdf:type rdf:resource="http://www.people#People"/>
+        <www:birth_year rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">1165</www:birth_year>
+        <www:death_year rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">1230</www:death_year>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.people#bianca_castiglia -->
+
+    <owl:NamedIndividual rdf:about="http://www.people#bianca_castiglia">
+        <rdf:type rdf:resource="http://www.people#People"/>
+        <www:birth_year rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">1188</www:birth_year>
+        <www:death_year rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">1252</www:death_year>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.people#eleonora_aquitania -->
+
+    <owl:NamedIndividual rdf:about="http://www.people#eleonora_aquitania">
+        <rdf:type rdf:resource="http://www.people#People"/>
+        <www:birth_year rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">1122</www:birth_year>
+        <www:death_year rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">1204</www:death_year>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.people#enrico_II -->
+
+    <owl:NamedIndividual rdf:about="http://www.people#enrico_II">
+        <rdf:type rdf:resource="http://www.people#People"/>
+        <www:marry rdf:resource="http://www.people#eleonora_aquitania"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.people#enrico_giovane -->
+
+    <owl:NamedIndividual rdf:about="http://www.people#enrico_giovane">
+        <rdf:type rdf:resource="http://www.people#People"/>
+        <www:marry rdf:resource="http://www.people#margherita_francia"/>
+        <www:son_of rdf:resource="http://www.people#eleonora_aquitania"/>
+        <www:son_of rdf:resource="http://www.people#enrico_II"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.people#giovanni -->
+
+    <owl:NamedIndividual rdf:about="http://www.people#giovanni">
+        <rdf:type rdf:resource="http://www.people#People"/>
+        <www:marry rdf:resource="http://www.people#isabella_angouleme"/>
+        <www:marry rdf:resource="http://www.people#isabella_gloucester"/>
+        <www:son_of rdf:resource="http://www.people#eleonora_aquitania"/>
+        <www:son_of rdf:resource="http://www.people#enrico_II"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.people#isabella_angouleme -->
+
+    <owl:NamedIndividual rdf:about="http://www.people#isabella_angouleme">
+        <rdf:type rdf:resource="http://www.people#People"/>
+        <www:birth_year rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">1186</www:birth_year>
+        <www:death_year rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">1246</www:death_year>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.people#isabella_gloucester -->
+
+    <owl:NamedIndividual rdf:about="http://www.people#isabella_gloucester">
+        <rdf:type rdf:resource="http://www.people#People"/>
+        <www:birth_year rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">1173</www:birth_year>
+        <www:birth_year rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">1217</www:birth_year>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.people#luigi -->
+
+    <owl:NamedIndividual rdf:about="http://www.people#luigi">
+        <rdf:type rdf:resource="http://www.people#People"/>
+        <www:marry rdf:resource="http://www.people#bianca_castiglia"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.people#margherita_francia -->
+
+    <owl:NamedIndividual rdf:about="http://www.people#margherita_francia">
+        <rdf:type rdf:resource="http://www.people#People"/>
+        <www:birth_year rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">1157</www:birth_year>
+        <www:death_year rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">1197</www:death_year>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.people#riccardo_I -->
+
+    <owl:NamedIndividual rdf:about="http://www.people#riccardo_I">
+        <rdf:type rdf:resource="http://www.people#People"/>
+        <www:marry rdf:resource="http://www.people#berengaria_navarra"/>
+        <www:son_of rdf:resource="http://www.people#eleonora_aquitania"/>
+        <www:son_of rdf:resource="http://www.people#enrico_II"/>
+    </owl:NamedIndividual>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.25.2023-02-15T19:15:49Z) https://github.com/owlcs/owlapi -->
+

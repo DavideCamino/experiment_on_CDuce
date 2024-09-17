@@ -1,0 +1,47 @@
+namespace owl="http://www.w3.org/2002/07/owl#"
+namespace xml="http://www.w3.org/XML/1998/namespace"
+namespace xsd="http://www.w3.org/2001/XMLSchema#"
+namespace rdfs="http://www.w3.org/2000/01/rdf-schema#"
+namespace skos="http://www.w3.org/2004/02/skos/core#"
+namespace rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#";;
+
+type Thesaurus = <rdf:RDF>[Desc *]
+type Desc = <rdf:Description rdf:about=String>[DescAtt *]
+
+type DescAtt = AltLabel | InScheme | PrefLabel | ScopeNote | ExactMatch | Broader | Type
+type AltLabel = <skos:altLabel xml:lang=String> String
+type InScheme = <skos:inScheme rdf:resource=String> []
+type PrefLabel = <skos:prefLabel xml:lang=String> String
+type ScopeNote = <skos:scopeNote xml:lang=String> String
+type ExactMatch = <skos:exactMatch rdf:resource=String> []
+type Broader = <skos:broader rdf:resource=String> []
+type Type = <rdf:type rdf:resource=String> [];;
+
+
+
+type Ontology = <rdf:RDF xml:base=String> [ Thing * ]
+type Thing = Ont | Property | Class | Individual
+
+type Ont = <owl:Ontology rdf:about=String> []
+
+type Property = <owl:ObjectProperty rdf:about=String> [ PropAtt * ]
+type PropAtt = Inverse | Domain | Range
+type Inverse = <owl:inverseOf rdf:resource=String> []
+type Domain = <rdfs:domain rdf:resource=String> [] 
+type Range = <rdfs:range rdf:resource=String> []
+
+type Class = <owl:Class rdf:about=String> [ ClassAtt * ]
+type ClassAtt = SubClass | EqClass | Label | Note | Dictionary
+type SubClass = <rdfs:subClassOf rdf:resource=String> []
+type EqClass = <owl:equivalentClass rdf:resource=String> []
+type Label = <rdfs:label xml:lang=String> String
+type Note = <skos:scopeNote xml:lang=String> String
+type Dictionary = <skos:exactMatch rdf:resource=String> []
+
+type Individual = <owl:NamedIndividual rdf:about=String> [ IndAtt * ]
+type IndAtt = IndClass | IndProp
+type IndClass = <rdf:type rdf:resource=String> []
+type IndProp = <_ rdf:resource=String> [];;
+
+
+

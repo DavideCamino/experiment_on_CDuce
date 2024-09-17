@@ -1,0 +1,28 @@
+include "TheOnt.cd";;
+
+let fun transformLabel (PrefLabel -> Label ; AltLabel -> Label)
+	| <skos:prefLabel xml:lang=l> lab -> <rdfs:label xml:lang=l> lab
+	| <skos:altLabel xml:lang=l> lab  -> <rdfs:label xml:lang=l> lab;;
+	
+let fun transformNote (ScopeNote -> Note)
+	<skos:scopeNote xml:lang=l> note -> <skos:scopeNote xml:lang=l> note;;
+	
+let fun transformDictionary (ExactMatch -> Dictionary)
+	<skos:exactMatch rdf:resource=res> [] -> <skos:exactMatch rdf:resource=res> [];;
+	
+let fun transformSubClass (Broader -> SubClass)
+	<skos:broader rdf:resource=res> [] -> <rdfs:subClassOf rdf:resource=res> [];;
+	
+let fun transformAtt (DescAtt -> [ClassAtt*])
+		| x & PrefLabel  -> [(transformLabel x)]
+		| x & AltLabel   -> [(transformLabel x)]
+		| x & ScopeNote  -> [(transformNote x)]
+		| x & ExactMatch -> [(transformDictionary x)]
+		| x & Broader    -> [(transformSubClass x)]
+		| Any            -> [];;
+		
+let fun transformClass (Desc -> Class)
+	<rdf:Description rdf:about=ab> [ (descAtt :: DescAtt)* ] ->
+		let classAtt = flatten ( map descAtt with x -> transformAtt x) in
+		<owl:Class rdf:about=ab> classAtt;;
+

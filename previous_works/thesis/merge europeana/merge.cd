@@ -1,0 +1,115 @@
+namespace owl="http://www.w3.org/2002/07/owl#"
+namespace xml="http://www.w3.org/XML/1998/namespace"
+namespace xsd="http://www.w3.org/2001/XMLSchema#"
+namespace rdfs="http://www.w3.org/2000/01/rdf-schema#"
+namespace skos="http://www.w3.org/2004/02/skos/core#"
+namespace ns1="http://www.semanticweb.org/OntEur#"
+namespace rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+namespace www="http://www.people#"
+namespace society="http://www.semanticweb.org/society#";;
+
+type Ontology = <rdf:RDF xml:base=String> [ Thing * ]
+type Thing = Ont | AnnProperty | ObjProperty | DataProperty | Class | Individual
+
+type Ont = <owl:Ontology rdf:about=String> []
+
+type AnnProperty = <owl:AnnotationProperty rdf:about=String> []
+
+type DataProperty = <owl:DatatypeProperty rdf:about=String> [ PropAttr* ]
+type ObjProperty = <owl:ObjectProperty rdf:about=String> [ PropAttr * ]
+
+type PropAttr = Inverse | Domain | Range | PropType
+type Inverse = <owl:inverseOf rdf:resource=String> []
+type Domain = <rdfs:domain rdf:resource=String> [] 
+type Range = <rdfs:range rdf:resource=String> []
+type PropType = <rdf:type rdf:resource=String> []
+
+type Class = <owl:Class rdf:about=String> [ ClassAtt * ]
+type ClassAtt = SubClass | EqClass | Label | Note | Dictionary
+type SubClass = <rdfs:subClassOf rdf:resource=String> []
+type EqClass = <owl:equivalentClass> [ EqAttr ] | <owl:equivalentClass rdf:resource=String> []
+type EqAttr = <owl:Restriction> [ AnyXml* ]
+type Label = <rdfs:label xml:lang=String> String
+type Note = <skos:scopeNote xml:lang=String> String
+type Dictionary = <skos:exactMatch rdf:resource=String> []
+
+type Individual = <owl:NamedIndividual rdf:about=String> [ IndAttr * ]
+type IndAttr = IndClass | IndProp | DataProp
+type IndClass = <rdf:type rdf:resource=String> []
+type IndProp = <_ rdf:resource=String> []
+type DataProp = <_ rdf:datatype=String> String
+
+let fun loadOntology (Latin1 -> Ontology)
+	x -> load_xml x :? Ontology;;
+
+let fun head ([ Any* ] -> Any)
+	| ([ x ] @ _) -> x
+	| [] -> "error empty list";;
+
+
+let fun subClasses (Class -> Ontology -> [ Class* ])
+	<owl:Class rdf:about=ab> [ _* ] -> fun (Ontology -> [ Class* ])
+	ont ->
+		select x from
+					 x in [ont]/Class,
+					 y in [x]/SubClass
+		where (y = <rdfs:subClassOf rdf:resource=ab> []);;
+		
+let fun subClassesRec ( Class -> Ontology -> [ Class* ])
+	cl -> fun (Ontology -> [ Class* ])
+	ont ->
+		let subCl = subClasses cl ont in
+		subCl @ flatten (map subCl with y -> subClassesRec y ont)
+		
+let fun tradIt ( [ Class* ] -> [ Label* ] )
+	x -> x/<rdfs:label xml:lang="it"> _;;
+	
+let fun andList ( [ Bool* ] -> Bool )
+	| ([ x ] @ y) -> (x && (andList y))
+	| [] -> `true;;
+	
+let fun orList ( [ Bool* ] -> Bool )
+	| ([ x ] @ y) -> (x || (orList y))
+	| [] -> `false;;
+	
+let fun classOf (Individual -> Ontology -> [Class*])
+	<owl:NamedIndividual ..> [ (tp::IndClass | _) *] -> fun (Ontology -> [Class*])
+	ont ->
+		transform tp with <rdf:type rdf:resource=str> [] ->
+			transform [ont]/Class with x ->
+				match x with <owl:Class rdf:about=a>[ _* ] -> if a = str then [x] else [];;
+
+let fun contains (Any -> [Any*] -> Bool)
+	obj -> fun ([Any*] -> Bool)
+	lst ->
+	let intersect = select x from x in lst
+								 where (x = obj) in
+	match intersect with
+		| []       -> `false
+		| [ Any* ] -> `true;;
+
+let fun isInClasses (Individual -> [Class*] -> Ontology -> Bool)
+	ind -> fun ([Class*] -> Ontology -> Bool)
+	classes -> fun (Ontology -> Bool)
+	ont ->
+	let cl = classOf ind ont in
+	let res = map cl with x -> contains x  classes in
+	andList res;;
+		
+let fun madeOf (Individual -> Ontology -> [Individual*])
+	<owl:NamedIndividual ..> [ (ip::IndProp | _) *] -> fun (Ontology -> [Individual*])
+	ont ->
+		transform ip with <ns1:made_of rdf:resource=str> [] ->
+			transform [ont]/Individual with x ->
+				match x with <owl:NamedIndividual rdf:about=a>[ _* ] -> if a = str then [x] else [];;
+		
+	
+let fun isArtificial (Individual -> [Class*] -> [Class*] -> Ontology -> Bool)
+	ind -> fun ([Class*] -> [Class*] -> Ontology -> Bool)
+	materials -> fun ([Class*] -> Ontology -> Bool)
+	artificialMats -> fun (Ontology -> Bool)
+	ont -> if (isInClasses ind materials ont) 
+		then (isInClasses ind artificialMats ont)
+		else 
+			let matMade = madeOf ind ont in
+			orList (map matMade with x -> isInClasses x artificialMats ont);;

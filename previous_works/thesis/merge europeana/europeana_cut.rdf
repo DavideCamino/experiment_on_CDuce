@@ -1,0 +1,544 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.semanticweb.org/OntEur#"
+     xml:base="http://www.semanticweb.org/OntEur"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:skos="http://www.w3.org/2004/02/skos/core#">
+    <owl:Ontology rdf:about="http://www.semanticweb.org/OntEur"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#exactMatch -->
+
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/2004/02/skos/core#exactMatch"/>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#scopeNote -->
+
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/2004/02/skos/core#scopeNote"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/OntEur#color -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/OntEur#color">
+        <rdfs:domain rdf:resource="http://thesaurus.europeanafashion.eu/thesaurus/10000"/>
+        <rdfs:range rdf:resource="http://thesaurus.europeanafashion.eu/thesaurus/10400"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/OntEur#crafted_with -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/OntEur#crafted_with">
+        <rdfs:domain rdf:resource="http://thesaurus.europeanafashion.eu/thesaurus/10000"/>
+        <rdfs:range rdf:resource="http://thesaurus.europeanafashion.eu/thesaurus/10366"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/OntEur#made_of -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/OntEur#made_of">
+        <rdfs:domain rdf:resource="http://thesaurus.europeanafashion.eu/thesaurus/10000"/>
+        <rdfs:range rdf:resource="http://thesaurus.europeanafashion.eu/thesaurus/10346"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://thesaurus.europeanafashion.eu/thesaurus/10000 -->
+
+    <owl:Class rdf:about="http://thesaurus.europeanafashion.eu/thesaurus/10000">
+        <rdfs:label xml:lang="de">Modeobjekte</rdfs:label>
+        <rdfs:label xml:lang="en">fashion objects</rdfs:label>
+        <rdfs:label xml:lang="nl">modeobjecten</rdfs:label>
+        <rdfs:label xml:lang="sv">modeobjekt</rdfs:label>
+        <rdfs:label xml:lang="sr">modni predmeti</rdfs:label>
+        <rdfs:label xml:lang="pt">objectos de moda</rdfs:label>
+        <rdfs:label xml:lang="es">objetos de moda</rdfs:label>
+        <rdfs:label xml:lang="fr">objets de mode</rdfs:label>
+        <rdfs:label xml:lang="it">oggetti di moda</rdfs:label>
+        <rdfs:label xml:lang="el">αντικείμενα μόδας</rdfs:label>
+        <rdfs:label xml:lang="he">פריט אופנה</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://thesaurus.europeanafashion.eu/thesaurus/10001 -->
+
+    <owl:Class rdf:about="http://thesaurus.europeanafashion.eu/thesaurus/10001">
+        <rdfs:subClassOf rdf:resource="http://thesaurus.europeanafashion.eu/thesaurus/10000"/>
+        <rdfs:label xml:lang="de">Kleidung</rdfs:label>
+        <rdfs:label xml:lang="it">abbigliamento</rdfs:label>
+        <rdfs:label xml:lang="en">clothing</rdfs:label>
+        <rdfs:label xml:lang="sv">dräkt</rdfs:label>
+        <rdfs:label xml:lang="en">garment</rdfs:label>
+        <rdfs:label xml:lang="fr">habillement</rdfs:label>
+        <rdfs:label xml:lang="es">indumentaria</rdfs:label>
+        <rdfs:label xml:lang="nl">kleding</rdfs:label>
+        <rdfs:label xml:lang="nl">kledingstukken</rdfs:label>
+        <rdfs:label xml:lang="sr">kostim</rdfs:label>
+        <rdfs:label xml:lang="pt">traje</rdfs:label>
+        <rdfs:label xml:lang="fr">vêtements</rdfs:label>
+        <rdfs:label xml:lang="he">תלבושת</rdfs:label>
+        <rdfs:label xml:lang="el">ένδυμα</rdfs:label>
+        <skos:exactMatch rdf:resource="http://vocab.getty.edu/aat/300209261"/>
+        <skos:scopeNote xml:lang="en">The Costume hierarchy contains descriptors for objects worn or carried for warmth, protection, embellishment, or for symbolic purposes. It includes descriptors for garments considered as the main item of dress (e.g.g., shirts, trousers), descriptors for garments worn under the main garments (e.g., undershirts), and descriptors for garments worn over the main garments (e.g., parkas). Also included are descriptors for protective wear, including types of armor; vestments and other ceremonial garments; uniforms; and an extensive listing of accessories, including those worn on the body (e.g.g., headgear, footwear) and those carried on the person (e.g.g., evening bags, parasols). Relation to Other Hierarchies: The descriptors pocket watches and wrist watches, along with other timepieces, appear in the Measuring Devices hierarchy. The descriptors pocket pistols and dress swords appear with other forms of weapons in the Weapons and Ammunition hierarchy. Descriptors for objects that may be used in the grooming and care of costume or the person (e.g.g., clothes brushes, nail clippers) appear in the Tools and Equipment hierarchy. Descriptors for objects used to store or transport costume or other personal effects (e.g.g., glove boxes, suitcases) appear in the containers hierarchy. Constituent parts of costume (e.g.g., busks, waistbands) appear in the Components hierarchy (AAT)</skos:scopeNote>
+    </owl:Class>
+    
+
+
+    <!-- http://thesaurus.europeanafashion.eu/thesaurus/10132 -->
+
+    <owl:Class rdf:about="http://thesaurus.europeanafashion.eu/thesaurus/10132">
+        <rdfs:subClassOf rdf:resource="http://thesaurus.europeanafashion.eu/thesaurus/10000"/>
+        <rdfs:label xml:lang="de">Accessoires</rdfs:label>
+        <rdfs:label xml:lang="de">Bekleidungsaccessoires</rdfs:label>
+        <rdfs:label xml:lang="de">Zubehör</rdfs:label>
+        <rdfs:label xml:lang="es">accesorio (vestuario)</rdfs:label>
+        <rdfs:label xml:lang="sv">accessoirer</rdfs:label>
+        <rdfs:label xml:lang="fr">accessoires de mode</rdfs:label>
+        <rdfs:label xml:lang="it">accessori per abbigliamento in costume</rdfs:label>
+        <rdfs:label xml:lang="pt">acessórios de traje</rdfs:label>
+        <rdfs:label xml:lang="sr">aksesoar</rdfs:label>
+        <rdfs:label xml:lang="en">clothing accessories</rdfs:label>
+        <rdfs:label xml:lang="nl">kledingaccessoires</rdfs:label>
+        <rdfs:label xml:lang="el">αξεσουάρ ενδυμάτων</rdfs:label>
+        <rdfs:label xml:lang="he">אביזרי תלבושות</rdfs:label>
+        <skos:exactMatch rdf:resource="http://vocab.getty.edu/aat/300209273"/>
+        <skos:scopeNote xml:lang="en">Items that do not form the primary articles of clothing, but are instead the smaller articles of dress, such as shoes, gloves, hats, jewelry, etc. (AAT)</skos:scopeNote>
+    </owl:Class>
+    
+
+
+    <!-- http://thesaurus.europeanafashion.eu/thesaurus/10297 -->
+
+    <owl:Class rdf:about="http://thesaurus.europeanafashion.eu/thesaurus/10297">
+        <rdfs:subClassOf rdf:resource="http://thesaurus.europeanafashion.eu/thesaurus/10000"/>
+        <rdfs:label xml:lang="de">Kontextuelle Objekte</rdfs:label>
+        <rdfs:label xml:lang="en">contextual objects</rdfs:label>
+        <rdfs:label xml:lang="nl">contextuele objecten</rdfs:label>
+        <rdfs:label xml:lang="sr">kontekstualni predmeti</rdfs:label>
+        <rdfs:label xml:lang="de">kontextbezogene Objekte</rdfs:label>
+        <rdfs:label xml:lang="sv">kontextuella objekt</rdfs:label>
+        <rdfs:label xml:lang="nl">kostuumattributen</rdfs:label>
+        <rdfs:label xml:lang="pt">objectos contextuais</rdfs:label>
+        <rdfs:label xml:lang="es">objetos contextuales</rdfs:label>
+        <rdfs:label xml:lang="fr">objets contextuels</rdfs:label>
+        <rdfs:label xml:lang="it">oggetti contestuali</rdfs:label>
+        <rdfs:label xml:lang="el">συναφή αντικείμενα</rdfs:label>
+        <rdfs:label xml:lang="he">פריטים בהקשר</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://thesaurus.europeanafashion.eu/thesaurus/10346 -->
+
+    <owl:Class rdf:about="http://thesaurus.europeanafashion.eu/thesaurus/10346">
+        <rdfs:label xml:lang="de">Materialien</rdfs:label>
+        <rdfs:label xml:lang="pt">materiais</rdfs:label>
+        <rdfs:label xml:lang="sv">material</rdfs:label>
+        <rdfs:label xml:lang="nl">materialen</rdfs:label>
+        <rdfs:label xml:lang="es">materiales</rdfs:label>
+        <rdfs:label xml:lang="it">materiali</rdfs:label>
+        <rdfs:label xml:lang="en">materials</rdfs:label>
+        <rdfs:label xml:lang="sr">materijali</rdfs:label>
+        <rdfs:label xml:lang="fr">matériaux</rdfs:label>
+        <rdfs:label xml:lang="el">υλικά</rdfs:label>
+        <rdfs:label xml:lang="he">חומר</rdfs:label>
+        <skos:exactMatch rdf:resource="http://vocab.getty.edu/aat/300010357"/>
+        <skos:scopeNote xml:lang="en">The Materials hierarchy contains descriptors for a broad range of substances, from natural and synthetic raw materials to material products. Material products are included here rather than in the Objects facet because they can be used in the construction of various objects (e.g., plank for floors or walls), and because they are not necessary constituent parts of objects (e.g., shingle is not essential to roofs in the same way as roof ridges or eaves). (AAT)</skos:scopeNote>
+    </owl:Class>
+    
+
+
+    <!-- http://thesaurus.europeanafashion.eu/thesaurus/10347 -->
+
+    <owl:Class rdf:about="http://thesaurus.europeanafashion.eu/thesaurus/10347">
+        <rdfs:subClassOf rdf:resource="http://thesaurus.europeanafashion.eu/thesaurus/10346"/>
+        <rdfs:label xml:lang="de">Naturfasern</rdfs:label>
+        <rdfs:label xml:lang="pt">fibras naturais</rdfs:label>
+        <rdfs:label xml:lang="es">fibras naturales</rdfs:label>
+        <rdfs:label xml:lang="it">fibre naturali</rdfs:label>
+        <rdfs:label xml:lang="fr">fibres naturelles</rdfs:label>
+        <rdfs:label xml:lang="en">natural fibres</rdfs:label>
+        <rdfs:label xml:lang="sv">naturfiber</rdfs:label>
+        <rdfs:label xml:lang="nl">natuurlijke vezels</rdfs:label>
+        <rdfs:label xml:lang="nl">natuurvezel</rdfs:label>
+        <rdfs:label xml:lang="sr">prirodna vlakna</rdfs:label>
+        <rdfs:label xml:lang="el">φυσικές ίνες</rdfs:label>
+        <rdfs:label xml:lang="he">סיבים טבעיים</rdfs:label>
+        <skos:exactMatch rdf:resource="http://vocab.getty.edu/aat/300014027"/>
+        <skos:scopeNote xml:lang="en">Fiber obtained from an animal, vegetable, or mineral source used for conversion into non-woven fabrics (felt, paper) or woven cloth. (AAT)</skos:scopeNote>
+    </owl:Class>
+    
+
+
+    <!-- http://thesaurus.europeanafashion.eu/thesaurus/10358 -->
+
+    <owl:Class rdf:about="http://thesaurus.europeanafashion.eu/thesaurus/10358">
+        <rdfs:subClassOf rdf:resource="http://thesaurus.europeanafashion.eu/thesaurus/10346"/>
+        <rdfs:label xml:lang="de">chemische Fasern</rdfs:label>
+        <rdfs:label xml:lang="nl">chemische vezels</rdfs:label>
+        <rdfs:label xml:lang="es">fibras químicas</rdfs:label>
+        <rdfs:label xml:lang="pt">fibras químicas</rdfs:label>
+        <rdfs:label xml:lang="it">fibre chimiche</rdfs:label>
+        <rdfs:label xml:lang="fr">fibres chimiques</rdfs:label>
+        <rdfs:label xml:lang="sr">hemijska vlakna</rdfs:label>
+        <rdfs:label xml:lang="en">manmade fibres</rdfs:label>
+        <rdfs:label xml:lang="sv">regenererade fibrer</rdfs:label>
+        <rdfs:label xml:lang="nl">synthetische vezels</rdfs:label>
+        <rdfs:label xml:lang="el">χημικές ίνες</rdfs:label>
+        <rdfs:label xml:lang="he">סיבים כימיים</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://thesaurus.europeanafashion.eu/thesaurus/10366 -->
+
+    <owl:Class rdf:about="http://thesaurus.europeanafashion.eu/thesaurus/10366">
+        <rdfs:label xml:lang="de">Techniken</rdfs:label>
+        <rdfs:label xml:lang="nl">technieken</rdfs:label>
+        <rdfs:label xml:lang="en">techniques</rdfs:label>
+        <rdfs:label xml:lang="fr">techniques</rdfs:label>
+        <rdfs:label xml:lang="it">tecniche</rdfs:label>
+        <rdfs:label xml:lang="sr">tehnike</rdfs:label>
+        <rdfs:label xml:lang="sv">tekniker</rdfs:label>
+        <rdfs:label xml:lang="es">técnicas</rdfs:label>
+        <rdfs:label xml:lang="pt">técnicas</rdfs:label>
+        <rdfs:label xml:lang="el">τεχνικές</rdfs:label>
+        <rdfs:label xml:lang="he">טכניקות</rdfs:label>
+        <skos:exactMatch rdf:resource="http://vocab.getty.edu/aat/300138082"/>
+        <skos:scopeNote xml:lang="en">The manner or method by which an activity is performed. Use processes when referring generally to the activities or procedures followed to produce some end, and for the actions or changes that take place in materials or objects. (AAT)</skos:scopeNote>
+    </owl:Class>
+    
+
+
+    <!-- http://thesaurus.europeanafashion.eu/thesaurus/10370 -->
+
+    <owl:Class rdf:about="http://thesaurus.europeanafashion.eu/thesaurus/10370">
+        <rdfs:subClassOf rdf:resource="http://thesaurus.europeanafashion.eu/thesaurus/10366"/>
+        <rdfs:label xml:lang="nl">textieltechnieken</rdfs:label>
+        <rdfs:label xml:lang="en">textile techniques</rdfs:label>
+        <skos:exactMatch rdf:resource="http://vocab.getty.edu/aat/300231684"/>
+    </owl:Class>
+    
+
+
+    <!-- http://thesaurus.europeanafashion.eu/thesaurus/10400 -->
+
+    <owl:Class rdf:about="http://thesaurus.europeanafashion.eu/thesaurus/10400">
+        <rdfs:label xml:lang="de">Farbe</rdfs:label>
+        <rdfs:label xml:lang="de">Farben</rdfs:label>
+        <rdfs:label xml:lang="de">Muster</rdfs:label>
+        <rdfs:label xml:lang="sr">boje</rdfs:label>
+        <rdfs:label xml:lang="es">colores</rdfs:label>
+        <rdfs:label xml:lang="it">colori</rdfs:label>
+        <rdfs:label xml:lang="en">colours</rdfs:label>
+        <rdfs:label xml:lang="pt">cores</rdfs:label>
+        <rdfs:label xml:lang="fr">couleurs</rdfs:label>
+        <rdfs:label xml:lang="sv">färger</rdfs:label>
+        <rdfs:label xml:lang="nl">kleuren</rdfs:label>
+        <rdfs:label xml:lang="el">χρώματα</rdfs:label>
+        <rdfs:label xml:lang="he">צבעים</rdfs:label>
+        <skos:exactMatch rdf:resource="http://vocab.getty.edu/aat/300080438"/>
+        <skos:scopeNote xml:lang="en">Refers to individual hues or tints, particularly the chromatic colors in the spectrum and the achromatic colors or neutrals. With reference to color in theory and the science of perception, see color (perceived attribute). (AAT)</skos:scopeNote>
+    </owl:Class>
+    
+
+
+    <!-- http://thesaurus.europeanafashion.eu/thesaurus/10401 -->
+
+    <owl:Class rdf:about="http://thesaurus.europeanafashion.eu/thesaurus/10401">
+        <rdfs:subClassOf rdf:resource="http://thesaurus.europeanafashion.eu/thesaurus/10400"/>
+        <rdfs:label xml:lang="de">Schwarz</rdfs:label>
+        <rdfs:label xml:lang="en">black</rdfs:label>
+        <rdfs:label xml:lang="sr">crna</rdfs:label>
+        <rdfs:label xml:lang="es">negro</rdfs:label>
+        <rdfs:label xml:lang="it">nero</rdfs:label>
+        <rdfs:label xml:lang="fr">noir</rdfs:label>
+        <rdfs:label xml:lang="pt">preto</rdfs:label>
+        <rdfs:label xml:lang="sv">svart</rdfs:label>
+        <rdfs:label xml:lang="nl">zwart</rdfs:label>
+        <rdfs:label xml:lang="el">μαύρο</rdfs:label>
+        <rdfs:label xml:lang="he">שחור</rdfs:label>
+        <skos:exactMatch rdf:resource="http://vocab.getty.edu/aat/300130920"/>
+        <skos:scopeNote xml:lang="en">Destitute of light, or incapable of reflecting it; of the color of soot or coal; of the darkest or a very dark color, the oppositeof white; characterized by such a color. (Webster&apos;s)</skos:scopeNote>
+    </owl:Class>
+    
+
+
+    <!-- http://thesaurus.europeanafashion.eu/thesaurus/10402 -->
+
+    <owl:Class rdf:about="http://thesaurus.europeanafashion.eu/thesaurus/10402">
+        <rdfs:subClassOf rdf:resource="http://thesaurus.europeanafashion.eu/thesaurus/10400"/>
+        <rdfs:label xml:lang="de">Blau</rdfs:label>
+        <rdfs:label xml:lang="es">azul</rdfs:label>
+        <rdfs:label xml:lang="pt">azul</rdfs:label>
+        <rdfs:label xml:lang="nl">blauw</rdfs:label>
+        <rdfs:label xml:lang="fr">bleu</rdfs:label>
+        <rdfs:label xml:lang="it">blu</rdfs:label>
+        <rdfs:label xml:lang="en">blue</rdfs:label>
+        <rdfs:label xml:lang="sv">blå</rdfs:label>
+        <rdfs:label xml:lang="sr">plava</rdfs:label>
+        <rdfs:label xml:lang="el">μπλε</rdfs:label>
+        <rdfs:label xml:lang="he">כחול</rdfs:label>
+        <skos:exactMatch rdf:resource="http://vocab.getty.edu/aat/300129361"/>
+        <skos:scopeNote xml:lang="en">Having the color of the clear sky, or a hue resembling it, whether lighter or darker. (Webster&apos;s)</skos:scopeNote>
+    </owl:Class>
+    
+
+
+    <!-- http://thesaurus.europeanafashion.eu/thesaurus/10403 -->
+
+    <owl:Class rdf:about="http://thesaurus.europeanafashion.eu/thesaurus/10403">
+        <rdfs:subClassOf rdf:resource="http://thesaurus.europeanafashion.eu/thesaurus/10400"/>
+        <rdfs:label xml:lang="de">Braun</rdfs:label>
+        <rdfs:label xml:lang="en">brown</rdfs:label>
+        <rdfs:label xml:lang="nl">bruin</rdfs:label>
+        <rdfs:label xml:lang="fr">brun</rdfs:label>
+        <rdfs:label xml:lang="sv">brun</rdfs:label>
+        <rdfs:label xml:lang="pt">castanho</rdfs:label>
+        <rdfs:label xml:lang="it">marrone</rdfs:label>
+        <rdfs:label xml:lang="es">marrón</rdfs:label>
+        <rdfs:label xml:lang="sr">smeđa</rdfs:label>
+        <rdfs:label xml:lang="el">καφέ</rdfs:label>
+        <rdfs:label xml:lang="he">חום</rdfs:label>
+        <skos:exactMatch rdf:resource="http://vocab.getty.edu/aat/300127490"/>
+        <skos:scopeNote xml:lang="en">A dark color inclining to red or yellow, resulting from the mixture of red and black, or of red, black, and yellow; a tawny,dusky hue. (Webster&apos;s)</skos:scopeNote>
+    </owl:Class>
+    
+
+
+    <!-- http://thesaurus.europeanafashion.eu/thesaurus/10404 -->
+
+    <owl:Class rdf:about="http://thesaurus.europeanafashion.eu/thesaurus/10404">
+        <rdfs:subClassOf rdf:resource="http://thesaurus.europeanafashion.eu/thesaurus/10400"/>
+        <rdfs:label xml:lang="de">Grün</rdfs:label>
+        <rdfs:label xml:lang="en">green</rdfs:label>
+        <rdfs:label xml:lang="nl">groen</rdfs:label>
+        <rdfs:label xml:lang="sv">grön</rdfs:label>
+        <rdfs:label xml:lang="es">verde</rdfs:label>
+        <rdfs:label xml:lang="it">verde</rdfs:label>
+        <rdfs:label xml:lang="pt">verde</rdfs:label>
+        <rdfs:label xml:lang="fr">vert</rdfs:label>
+        <rdfs:label xml:lang="sr">zelena</rdfs:label>
+        <rdfs:label xml:lang="el">πράσινο</rdfs:label>
+        <rdfs:label xml:lang="he">ירוק</rdfs:label>
+        <skos:exactMatch rdf:resource="http://vocab.getty.edu/aat/300128438"/>
+        <skos:scopeNote xml:lang="en">Having the color of grass when fresh and growing; resembling that color of the solar spectrum which is between theyellow and the blue; verdant; emerald. (Webster&apos;s)</skos:scopeNote>
+    </owl:Class>
+    
+
+
+    <!-- http://thesaurus.europeanafashion.eu/thesaurus/10405 -->
+
+    <owl:Class rdf:about="http://thesaurus.europeanafashion.eu/thesaurus/10405">
+        <rdfs:subClassOf rdf:resource="http://thesaurus.europeanafashion.eu/thesaurus/10400"/>
+        <rdfs:label xml:lang="de">Grau</rdfs:label>
+        <rdfs:label xml:lang="pt">cinzento</rdfs:label>
+        <rdfs:label xml:lang="en">grey</rdfs:label>
+        <rdfs:label xml:lang="it">grigio</rdfs:label>
+        <rdfs:label xml:lang="nl">grijs</rdfs:label>
+        <rdfs:label xml:lang="es">gris</rdfs:label>
+        <rdfs:label xml:lang="fr">gris</rdfs:label>
+        <rdfs:label xml:lang="sv">grå</rdfs:label>
+        <rdfs:label xml:lang="sr">siva</rdfs:label>
+        <rdfs:label xml:lang="el">γκρι</rdfs:label>
+        <rdfs:label xml:lang="he">אפור</rdfs:label>
+        <skos:exactMatch rdf:resource="http://vocab.getty.edu/aat/300130811"/>
+        <skos:scopeNote xml:lang="en">A neutral achromatic color midway between white and black (Webster&apos;s)</skos:scopeNote>
+    </owl:Class>
+    
+
+
+    <!-- http://thesaurus.europeanafashion.eu/thesaurus/10543 -->
+
+    <owl:Class rdf:about="http://thesaurus.europeanafashion.eu/thesaurus/10543">
+        <rdfs:subClassOf rdf:resource="http://thesaurus.europeanafashion.eu/thesaurus/10346"/>
+        <rdfs:label xml:lang="de">Materialien zur Dekoration, Besatz und technischen Ausrüstung</rdfs:label>
+        <rdfs:label xml:lang="sv">material för dekoration och applikation</rdfs:label>
+        <rdfs:label xml:lang="nl">materialen voor decoratie, applicatie en technische afwerking</rdfs:label>
+        <rdfs:label xml:lang="es">materiales para decoración, aplicación y acabados técnicos</rdfs:label>
+        <rdfs:label xml:lang="it">materiali per decorazione, applicazione e rifinitura tecnica</rdfs:label>
+        <rdfs:label xml:lang="en">materials for decoration, application and finishing</rdfs:label>
+        <rdfs:label xml:lang="sr">materijali za ukrašavanje, aplikaciju i tehničku doradu</rdfs:label>
+        <rdfs:label xml:lang="fr">matériaux pour pour la décoration, l&apos;application et les finitions</rdfs:label>
+        <rdfs:label xml:lang="el">υλικά διακοσμητικά, επίθετα και για φινίρισμα</rdfs:label>
+        <rdfs:label xml:lang="he">חומרים לקישוט, יישום וגימור טכני</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://thesaurus.europeanafashion.eu/thesaurus/10692 -->
+
+    <owl:Class rdf:about="http://thesaurus.europeanafashion.eu/thesaurus/10692">
+        <rdfs:subClassOf rdf:resource="http://thesaurus.europeanafashion.eu/thesaurus/10366"/>
+        <rdfs:label xml:lang="fr">fait main</rdfs:label>
+        <rdfs:label xml:lang="it">fatto a mano</rdfs:label>
+        <rdfs:label xml:lang="nl">handgemaakt</rdfs:label>
+        <rdfs:label xml:lang="de">handgemacht</rdfs:label>
+        <rdfs:label xml:lang="sv">handgjort</rdfs:label>
+        <rdfs:label xml:lang="en">handmade</rdfs:label>
+        <rdfs:label xml:lang="es">hecho a mano</rdfs:label>
+        <rdfs:label xml:lang="sr">ručni rad</rdfs:label>
+        <rdfs:label xml:lang="el">χειροποίητο</rdfs:label>
+        <rdfs:label xml:lang="he">עבודת יד</rdfs:label>
+        <skos:exactMatch rdf:resource="http://vocab.getty.edu/aat/300191818"/>
+        <skos:scopeNote xml:lang="en">Use to describe artifacts made by hand, usually to distinguish from those made by machine. (AAT)</skos:scopeNote>
+    </owl:Class>
+    
+
+
+    <!-- http://thesaurus.europeanafashion.eu/thesaurus/10944 -->
+
+    <owl:Class rdf:about="http://thesaurus.europeanafashion.eu/thesaurus/10944">
+        <rdfs:subClassOf rdf:resource="http://thesaurus.europeanafashion.eu/thesaurus/10366"/>
+        <rdfs:label xml:lang="fr">Autres techniques de décoration</rdfs:label>
+        <rdfs:label xml:lang="it">altre tecniche di decorazione</rdfs:label>
+        <rdfs:label xml:lang="nl">andere decoratietechnieken</rdfs:label>
+        <rdfs:label xml:lang="sv">andra dekorationstekniker</rdfs:label>
+        <rdfs:label xml:lang="en">non-textile techniques</rdfs:label>
+        <rdfs:label xml:lang="sr">ostale tehnike ukrašavnja</rdfs:label>
+        <rdfs:label xml:lang="nl">overige decoratietechnieken</rdfs:label>
+        <rdfs:label xml:lang="de">weitere Gestaltungstechniken</rdfs:label>
+        <rdfs:label xml:lang="el">άλλες τεχνικές διακόσμησης</rdfs:label>
+        <rdfs:label xml:lang="he">זהרונים</rdfs:label>
+        <rdfs:label xml:lang="he">טכניקות דקורטיביות נוספות</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://thesaurus.europeanafashion.eu/thesaurus/11088 -->
+
+    <owl:Class rdf:about="http://thesaurus.europeanafashion.eu/thesaurus/11088">
+        <rdfs:subClassOf rdf:resource="http://thesaurus.europeanafashion.eu/thesaurus/10366"/>
+        <rdfs:label xml:lang="nl">gerecycleerd</rdfs:label>
+        <rdfs:label xml:lang="sr">reciklirano</rdfs:label>
+        <rdfs:label xml:lang="en">recycled</rdfs:label>
+        <rdfs:label xml:lang="fr">recyclé</rdfs:label>
+        <rdfs:label xml:lang="it">riciclato</rdfs:label>
+        <rdfs:label xml:lang="de">wiederverwertet</rdfs:label>
+        <rdfs:label xml:lang="sv">återvunnet</rdfs:label>
+        <rdfs:label xml:lang="el">ανακυκλωμένο</rdfs:label>
+        <rdfs:label xml:lang="he">ממוחזר</rdfs:label>
+        <skos:exactMatch rdf:resource="http://vocab.getty.edu/aat/300191243"/>
+        <skos:scopeNote xml:lang="en">Recovery and reuse of materials and energy from waste. (AAT)</skos:scopeNote>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/OntEur#calzamaglia_antica -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/OntEur#calzamaglia_antica">
+        <made_of rdf:resource="http://www.semanticweb.org/OntEur#wool"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/OntEur#calzamaglia_moderna -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/OntEur#calzamaglia_moderna">
+        <made_of rdf:resource="http://www.semanticweb.org/OntEur#nylon"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/OntEur#cotton -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/OntEur#cotton"/>
+    
+
+
+    <!-- http://www.semanticweb.org/OntEur#gonna_antica -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/OntEur#gonna_antica">
+        <made_of rdf:resource="http://www.semanticweb.org/OntEur#silk"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/OntEur#gonna_moderna -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/OntEur#gonna_moderna">
+        <made_of rdf:resource="http://www.semanticweb.org/OntEur#cotton"/>
+        <made_of rdf:resource="http://www.semanticweb.org/OntEur#polyester"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/OntEur#nylon -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/OntEur#nylon"/>
+    
+
+
+    <!-- http://www.semanticweb.org/OntEur#polyester -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/OntEur#polyester"/>
+    
+
+
+    <!-- http://www.semanticweb.org/OntEur#silk -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/OntEur#silk"/>
+    
+
+
+    <!-- http://www.semanticweb.org/OntEur#wool -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/OntEur#wool"/>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.25.2023-02-15T19:15:49Z) https://github.com/owlcs/owlapi -->
+
