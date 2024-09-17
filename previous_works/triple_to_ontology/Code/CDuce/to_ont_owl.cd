@@ -1,0 +1,38 @@
+include "info_struct.cd";;
+include  "ont_owl_struct.cd";;
+
+type InfoOnt = [Declaration Declaration Declaration ClassAssertion ClassAssertion ObjectPropertyAssertion AnnotationAssertion]
+
+let fun info_to_ont_elem (Info -> [Thing *])
+  <info>[ <subject> sub <verb> v <complement> comp <sex> s ] ->
+    let subj = "#" @ sub in
+    [<Declaration> [<NamedIndividual IRI=("#"@sub)> []]
+    <Declaration> [<NamedIndividual IRI=("#"@comp)> []]
+    <Declaration> [<ObjectProperty IRI=("#"@v)> []]
+    <ClassAssertion> [<Class IRI=("#Person")> [] <NamedIndividual IRI=("#"@sub)> []]
+    <ClassAssertion> [<Class IRI=("#Complement")> [] <NamedIndividual IRI=("#"@comp)> []]
+    <ObjectPropertyAssertion> [<ObjectProperty IRI=("#"@v)>[] 
+                                <NamedIndividual IRI=("#"@sub)> [] 
+                                <NamedIndividual IRI=("#"@comp)> []]
+    <AnnotationAssertion> [<AnnotationProperty abbreviatedIRI="rdfs:comment"> []
+                            <IRI> subj
+                            <Literal> s]]
+
+let fun info_to_ont (Information -> Ontology)
+  <information> x ->
+    let infos = map x with info -> info_to_ont_elem info in
+    let people = <Declaration> [<Class IRI="#Person"> []] in
+    let comp = <Declaration> [<Class IRI="#Complement"> []] in
+    let base_str = "http://www.semanticweb.org/ontology" in
+    <Ontology ontologyIRI="http://www.semanticweb.org/ontology">
+    (
+      [<Prefix name="owl" IRI="http://www.w3.org/2002/07/owl#"> []] @
+      [<Prefix name="rdf" IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> []] @
+      [<Prefix name="xml" IRI="http://www.w3.org/XML/1998/namespace"> []] @
+      [<Prefix name="xsd" IRI="http://www.w3.org/2001/XMLSchema#"> []] @
+      [<Prefix name="rdfs" IRI="http://www.w3.org/2000/01/rdf-schema#"> []] @
+      [<Prefix name="" IRI=base_str> []] @
+      [people] @ 
+      [comp] @
+      flatten infos
+    )

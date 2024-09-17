@@ -1,0 +1,7 @@
+type Information = <information>[Info*]
+type Info = <info>[Subject Predicate Object Sex]
+type Subject = <subject>[PCDATA]
+type Predicate = <verb>[PCDATA]
+type Object = <complement>[PCDATA]
+type Sex = <sex>[ PCDATA ]
+

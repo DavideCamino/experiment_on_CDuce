@@ -1,0 +1,8 @@
+include  "ont_owl_struct.cd";;
+
+let ont :? Ontology = load_xml "../XML/ont_owl.owx";;
+
+let painter = select x 
+              from x in [ont]/ObjectPropertyAssertion,
+                   y in [x]/ObjectProperty
+              where (y = <ObjectProperty IRI="#painted">[])

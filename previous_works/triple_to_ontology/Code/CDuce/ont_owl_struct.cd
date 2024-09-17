@@ -1,0 +1,17 @@
+type Ontology = <Ontology ontologyIRI=String> [ Thing * ]
+type Thing = Prefix | Declaration | ClassAssertion | ObjectPropertyAssertion | AnnotationAssertion
+
+type Prefix = <Prefix name=String IRI=String> []
+
+type Declaration = <Declaration> [ Class | ObjectProperty | NamedIndividual ]
+type ClassAssertion = <ClassAssertion> [Class NamedIndividual]
+type ObjectPropertyAssertion = <ObjectPropertyAssertion> [ObjectProperty NamedIndividual NamedIndividual]
+
+type Class = <Class IRI=String> []
+type ObjectProperty = <ObjectProperty IRI=String> []
+type NamedIndividual = <NamedIndividual IRI=String> []
+
+type AnnotationAssertion = <AnnotationAssertion> [AnnotationProperty IRI Literal]
+type AnnotationProperty = <AnnotationProperty abbreviatedIRI=String> []
+type IRI = <IRI> [PCDATA]
+type Literal = <Literal> [PCDATA]

@@ -1,0 +1,19 @@
+(*
+  Copiare e incollare per fare la traduzione da triple in ontologia
+  nel formato protegé XML/RDF
+*)
+
+include "to_ont_rdf.cd";;
+let infos :? Information = load_xml "../XML/info.xml" in
+let ont = info_to_ont infos in
+dump_to_file_utf8 "../XML/ont_rdf.xml" (print_xml_utf8 ont);;
+
+
+(*
+  Copiare e incollare per fare la traduzione da triple in ontologia
+  nel formato protegé XML/OWL
+*)
+include "to_ont_owl.cd";;
+let infos :? Information = load_xml "../XML/info.xml" in 
+let ont = info_to_ont infos in
+dump_to_file_utf8 "../XML/ont_owl.owx" (print_xml_utf8 ont);;

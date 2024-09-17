@@ -1,0 +1,65 @@
+include "info_struct.cd";;
+include "ont_rdf_struct.cd";;
+namespace ontology="http://www.semanticweb.org/ontology#";;
+
+let base = "http://www.semanticweb.org/ontology";;
+
+
+let pers_class :? Class = <owl:Class rdf:about=(base @ "#Person")> [];;
+
+let compl_class :? Class = <owl:Class rdf:about= (base @ "#Complement")> [];;
+
+
+let properties :? [Property*] = 
+  [
+    <owl:ObjectProperty rdf:about=(base @ "#wrote")> []
+    <owl:ObjectProperty rdf:about=(base @ "#painted")> []
+    <owl:ObjectProperty rdf:about=(base @ "#discovered")> []
+    <owl:ObjectProperty rdf:about=(base @ "#invented")> []
+    <owl:ObjectProperty rdf:about=(base @ "#married")> []
+    <owl:ObjectProperty rdf:about=(base @ "#built")> []
+  ];;
+
+let fun info_to_pers (Info -> Individual)
+  <info>[ <subject> sub <verb> v <complement> comp <sex> s ] ->
+    let ab = base @ "#" @ sub in
+    let class_res = base @ "#Person" in
+    let prop_res = base @ "#" @ comp in
+    let prop = match v with
+      | "painted" -> <ontology:painted rdf:resource=prop_res> []
+      | "wrote" -> <ontology:wrote rdf:resource=prop_res> []
+      | "discovered" -> <ontology:discovered rdf:resource=prop_res> []
+      | "invented" -> <ontology:invented rdf:resource=prop_res> []
+      | "married" -> <ontology:married rdf:resource=prop_res> []
+      | "built" -> <ontology:built rdf:resource=prop_res> []
+      | _ -> <ontology:action rdf:resource=prop_res> []
+    in
+    <owl:NamedIndividual rdf:about=ab> [
+      <rdf:type rdf:resource=class_res> []
+      prop
+      <rdfs:comment>s
+    ]
+
+let infos_to_people ([Info*] -> [Individual*])
+  x -> map x with x -> info_to_pers x
+
+let fun info_to_compl ([Info*] -> [Individual*])
+  x -> map x with <info>[ _ _ <complement> comp _] ->
+    let ab = base @ "#" @ comp in
+    let res = base @ "#Complement" in
+    <owl:NamedIndividual rdf:about=ab> [
+      <rdf:type rdf:resource=res> []
+    ]
+
+let fun info_to_ont (Information -> Ontology)
+  <information> x -> 
+    let people = infos_to_people x in
+    let compl = info_to_compl x in
+    <rdf:RDF> (
+      [<owl:Ontology rdf:about=base> []] @
+      [pers_class] @
+      [compl_class] @
+      properties @
+      people @
+      compl
+    )

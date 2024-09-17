@@ -1,0 +1,663 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Ontology ontologyIRI="http://www.semanticweb.org/ontology">
+  <Prefix name="owl" IRI="http://www.w3.org/2002/07/owl#"/>
+  <Prefix name="rdf" IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+  <Prefix name="xml" IRI="http://www.w3.org/XML/1998/namespace"/>
+  <Prefix name="xsd" IRI="http://www.w3.org/2001/XMLSchema#"/>
+  <Prefix name="rdfs" IRI="http://www.w3.org/2000/01/rdf-schema#"/>
+  <Prefix name="" IRI="http://www.semanticweb.org/ontology"/>
+  <Declaration>
+    <Class IRI="#Person"/>
+  </Declaration>
+  <Declaration>
+    <Class IRI="#Complement"/>
+  </Declaration>
+  <Declaration>
+    <NamedIndividual IRI="#Leonardo_da_Vinci"/>
+  </Declaration>
+  <Declaration>
+    <NamedIndividual IRI="#the_Mona_Lisa"/>
+  </Declaration>
+  <Declaration>
+    <ObjectProperty IRI="#painted"/>
+  </Declaration>
+  <ClassAssertion>
+    <Class IRI="#Person"/>
+    <NamedIndividual IRI="#Leonardo_da_Vinci"/>
+  </ClassAssertion>
+  <ClassAssertion>
+    <Class IRI="#Complement"/>
+    <NamedIndividual IRI="#the_Mona_Lisa"/>
+  </ClassAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="#painted"/>
+    <NamedIndividual IRI="#Leonardo_da_Vinci"/>
+    <NamedIndividual IRI="#the_Mona_Lisa"/>
+  </ObjectPropertyAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+    <IRI>#Leonardo_da_Vinci</IRI>
+    <Literal>M</Literal>
+  </AnnotationAssertion>
+  <Declaration>
+    <NamedIndividual IRI="#Jane_Austen"/>
+  </Declaration>
+  <Declaration>
+    <NamedIndividual IRI="#Pride_and_Prejudice"/>
+  </Declaration>
+  <Declaration>
+    <ObjectProperty IRI="#wrote"/>
+  </Declaration>
+  <ClassAssertion>
+    <Class IRI="#Person"/>
+    <NamedIndividual IRI="#Jane_Austen"/>
+  </ClassAssertion>
+  <ClassAssertion>
+    <Class IRI="#Complement"/>
+    <NamedIndividual IRI="#Pride_and_Prejudice"/>
+  </ClassAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="#wrote"/>
+    <NamedIndividual IRI="#Jane_Austen"/>
+    <NamedIndividual IRI="#Pride_and_Prejudice"/>
+  </ObjectPropertyAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+    <IRI>#Jane_Austen</IRI>
+    <Literal>F</Literal>
+  </AnnotationAssertion>
+  <Declaration>
+    <NamedIndividual IRI="#Marie_Curie"/>
+  </Declaration>
+  <Declaration>
+    <NamedIndividual IRI="#radium_and_polonium"/>
+  </Declaration>
+  <Declaration>
+    <ObjectProperty IRI="#discovered"/>
+  </Declaration>
+  <ClassAssertion>
+    <Class IRI="#Person"/>
+    <NamedIndividual IRI="#Marie_Curie"/>
+  </ClassAssertion>
+  <ClassAssertion>
+    <Class IRI="#Complement"/>
+    <NamedIndividual IRI="#radium_and_polonium"/>
+  </ClassAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="#discovered"/>
+    <NamedIndividual IRI="#Marie_Curie"/>
+    <NamedIndividual IRI="#radium_and_polonium"/>
+  </ObjectPropertyAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+    <IRI>#Marie_Curie</IRI>
+    <Literal>F</Literal>
+  </AnnotationAssertion>
+  <Declaration>
+    <NamedIndividual IRI="#Thomas_Edison"/>
+  </Declaration>
+  <Declaration>
+    <NamedIndividual IRI="#the_light_bulb"/>
+  </Declaration>
+  <Declaration>
+    <ObjectProperty IRI="#invented"/>
+  </Declaration>
+  <ClassAssertion>
+    <Class IRI="#Person"/>
+    <NamedIndividual IRI="#Thomas_Edison"/>
+  </ClassAssertion>
+  <ClassAssertion>
+    <Class IRI="#Complement"/>
+    <NamedIndividual IRI="#the_light_bulb"/>
+  </ClassAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="#invented"/>
+    <NamedIndividual IRI="#Thomas_Edison"/>
+    <NamedIndividual IRI="#the_light_bulb"/>
+  </ObjectPropertyAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+    <IRI>#Thomas_Edison</IRI>
+    <Literal>M</Literal>
+  </AnnotationAssertion>
+  <Declaration>
+    <NamedIndividual IRI="#Gustave_Eiffel"/>
+  </Declaration>
+  <Declaration>
+    <NamedIndividual IRI="#the_Eiffel_Tower"/>
+  </Declaration>
+  <Declaration>
+    <ObjectProperty IRI="#built"/>
+  </Declaration>
+  <ClassAssertion>
+    <Class IRI="#Person"/>
+    <NamedIndividual IRI="#Gustave_Eiffel"/>
+  </ClassAssertion>
+  <ClassAssertion>
+    <Class IRI="#Complement"/>
+    <NamedIndividual IRI="#the_Eiffel_Tower"/>
+  </ClassAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="#built"/>
+    <NamedIndividual IRI="#Gustave_Eiffel"/>
+    <NamedIndividual IRI="#the_Eiffel_Tower"/>
+  </ObjectPropertyAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+    <IRI>#Gustave_Eiffel</IRI>
+    <Literal>M</Literal>
+  </AnnotationAssertion>
+  <Declaration>
+    <NamedIndividual IRI="#Cleopatra"/>
+  </Declaration>
+  <Declaration>
+    <NamedIndividual IRI="#Mark_Antony"/>
+  </Declaration>
+  <Declaration>
+    <ObjectProperty IRI="#married"/>
+  </Declaration>
+  <ClassAssertion>
+    <Class IRI="#Person"/>
+    <NamedIndividual IRI="#Cleopatra"/>
+  </ClassAssertion>
+  <ClassAssertion>
+    <Class IRI="#Complement"/>
+    <NamedIndividual IRI="#Mark_Antony"/>
+  </ClassAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="#married"/>
+    <NamedIndividual IRI="#Cleopatra"/>
+    <NamedIndividual IRI="#Mark_Antony"/>
+  </ObjectPropertyAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+    <IRI>#Cleopatra</IRI>
+    <Literal>F</Literal>
+  </AnnotationAssertion>
+  <Declaration>
+    <NamedIndividual IRI="#Alexander_Fleming"/>
+  </Declaration>
+  <Declaration>
+    <NamedIndividual IRI="#penicillin"/>
+  </Declaration>
+  <Declaration>
+    <ObjectProperty IRI="#discovered"/>
+  </Declaration>
+  <ClassAssertion>
+    <Class IRI="#Person"/>
+    <NamedIndividual IRI="#Alexander_Fleming"/>
+  </ClassAssertion>
+  <ClassAssertion>
+    <Class IRI="#Complement"/>
+    <NamedIndividual IRI="#penicillin"/>
+  </ClassAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="#discovered"/>
+    <NamedIndividual IRI="#Alexander_Fleming"/>
+    <NamedIndividual IRI="#penicillin"/>
+  </ObjectPropertyAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+    <IRI>#Alexander_Fleming</IRI>
+    <Literal>M</Literal>
+  </AnnotationAssertion>
+  <Declaration>
+    <NamedIndividual IRI="#Mary_Shelley"/>
+  </Declaration>
+  <Declaration>
+    <NamedIndividual IRI="#Frankenstein"/>
+  </Declaration>
+  <Declaration>
+    <ObjectProperty IRI="#wrote"/>
+  </Declaration>
+  <ClassAssertion>
+    <Class IRI="#Person"/>
+    <NamedIndividual IRI="#Mary_Shelley"/>
+  </ClassAssertion>
+  <ClassAssertion>
+    <Class IRI="#Complement"/>
+    <NamedIndividual IRI="#Frankenstein"/>
+  </ClassAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="#wrote"/>
+    <NamedIndividual IRI="#Mary_Shelley"/>
+    <NamedIndividual IRI="#Frankenstein"/>
+  </ObjectPropertyAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+    <IRI>#Mary_Shelley</IRI>
+    <Literal>F</Literal>
+  </AnnotationAssertion>
+  <Declaration>
+    <NamedIndividual IRI="#Vincent_van_Gogh"/>
+  </Declaration>
+  <Declaration>
+    <NamedIndividual IRI="#Starry_Night"/>
+  </Declaration>
+  <Declaration>
+    <ObjectProperty IRI="#painted"/>
+  </Declaration>
+  <ClassAssertion>
+    <Class IRI="#Person"/>
+    <NamedIndividual IRI="#Vincent_van_Gogh"/>
+  </ClassAssertion>
+  <ClassAssertion>
+    <Class IRI="#Complement"/>
+    <NamedIndividual IRI="#Starry_Night"/>
+  </ClassAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="#painted"/>
+    <NamedIndividual IRI="#Vincent_van_Gogh"/>
+    <NamedIndividual IRI="#Starry_Night"/>
+  </ObjectPropertyAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+    <IRI>#Vincent_van_Gogh</IRI>
+    <Literal>M</Literal>
+  </AnnotationAssertion>
+  <Declaration>
+    <NamedIndividual IRI="#William_Shakespeare"/>
+  </Declaration>
+  <Declaration>
+    <NamedIndividual IRI="#Hamlet"/>
+  </Declaration>
+  <Declaration>
+    <ObjectProperty IRI="#wrote"/>
+  </Declaration>
+  <ClassAssertion>
+    <Class IRI="#Person"/>
+    <NamedIndividual IRI="#William_Shakespeare"/>
+  </ClassAssertion>
+  <ClassAssertion>
+    <Class IRI="#Complement"/>
+    <NamedIndividual IRI="#Hamlet"/>
+  </ClassAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="#wrote"/>
+    <NamedIndividual IRI="#William_Shakespeare"/>
+    <NamedIndividual IRI="#Hamlet"/>
+  </ObjectPropertyAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+    <IRI>#William_Shakespeare</IRI>
+    <Literal>M</Literal>
+  </AnnotationAssertion>
+  <Declaration>
+    <NamedIndividual IRI="#Rosalind_Franklin"/>
+  </Declaration>
+  <Declaration>
+    <NamedIndividual IRI="#the_DNA_double_helix_structure"/>
+  </Declaration>
+  <Declaration>
+    <ObjectProperty IRI="#discovered"/>
+  </Declaration>
+  <ClassAssertion>
+    <Class IRI="#Person"/>
+    <NamedIndividual IRI="#Rosalind_Franklin"/>
+  </ClassAssertion>
+  <ClassAssertion>
+    <Class IRI="#Complement"/>
+    <NamedIndividual IRI="#the_DNA_double_helix_structure"/>
+  </ClassAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="#discovered"/>
+    <NamedIndividual IRI="#Rosalind_Franklin"/>
+    <NamedIndividual IRI="#the_DNA_double_helix_structure"/>
+  </ObjectPropertyAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+    <IRI>#Rosalind_Franklin</IRI>
+    <Literal>F</Literal>
+  </AnnotationAssertion>
+  <Declaration>
+    <NamedIndividual IRI="#Alexander_Graham_Bell"/>
+  </Declaration>
+  <Declaration>
+    <NamedIndividual IRI="#the_telephone"/>
+  </Declaration>
+  <Declaration>
+    <ObjectProperty IRI="#invented"/>
+  </Declaration>
+  <ClassAssertion>
+    <Class IRI="#Person"/>
+    <NamedIndividual IRI="#Alexander_Graham_Bell"/>
+  </ClassAssertion>
+  <ClassAssertion>
+    <Class IRI="#Complement"/>
+    <NamedIndividual IRI="#the_telephone"/>
+  </ClassAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="#invented"/>
+    <NamedIndividual IRI="#Alexander_Graham_Bell"/>
+    <NamedIndividual IRI="#the_telephone"/>
+  </ObjectPropertyAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+    <IRI>#Alexander_Graham_Bell</IRI>
+    <Literal>M</Literal>
+  </AnnotationAssertion>
+  <Declaration>
+    <NamedIndividual IRI="#Frank_Lloyd_Wright"/>
+  </Declaration>
+  <Declaration>
+    <NamedIndividual IRI="#Fallingwater"/>
+  </Declaration>
+  <Declaration>
+    <ObjectProperty IRI="#built"/>
+  </Declaration>
+  <ClassAssertion>
+    <Class IRI="#Person"/>
+    <NamedIndividual IRI="#Frank_Lloyd_Wright"/>
+  </ClassAssertion>
+  <ClassAssertion>
+    <Class IRI="#Complement"/>
+    <NamedIndividual IRI="#Fallingwater"/>
+  </ClassAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="#built"/>
+    <NamedIndividual IRI="#Frank_Lloyd_Wright"/>
+    <NamedIndividual IRI="#Fallingwater"/>
+  </ObjectPropertyAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+    <IRI>#Frank_Lloyd_Wright</IRI>
+    <Literal>M</Literal>
+  </AnnotationAssertion>
+  <Declaration>
+    <NamedIndividual IRI="#Frida_Kahlo"/>
+  </Declaration>
+  <Declaration>
+    <NamedIndividual IRI="#Diego_Rivera"/>
+  </Declaration>
+  <Declaration>
+    <ObjectProperty IRI="#married"/>
+  </Declaration>
+  <ClassAssertion>
+    <Class IRI="#Person"/>
+    <NamedIndividual IRI="#Frida_Kahlo"/>
+  </ClassAssertion>
+  <ClassAssertion>
+    <Class IRI="#Complement"/>
+    <NamedIndividual IRI="#Diego_Rivera"/>
+  </ClassAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="#married"/>
+    <NamedIndividual IRI="#Frida_Kahlo"/>
+    <NamedIndividual IRI="#Diego_Rivera"/>
+  </ObjectPropertyAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+    <IRI>#Frida_Kahlo</IRI>
+    <Literal>F</Literal>
+  </AnnotationAssertion>
+  <Declaration>
+    <NamedIndividual IRI="#Nikola_Tesla"/>
+  </Declaration>
+  <Declaration>
+    <NamedIndividual IRI="#alternating_current"/>
+  </Declaration>
+  <Declaration>
+    <ObjectProperty IRI="#discovered"/>
+  </Declaration>
+  <ClassAssertion>
+    <Class IRI="#Person"/>
+    <NamedIndividual IRI="#Nikola_Tesla"/>
+  </ClassAssertion>
+  <ClassAssertion>
+    <Class IRI="#Complement"/>
+    <NamedIndividual IRI="#alternating_current"/>
+  </ClassAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="#discovered"/>
+    <NamedIndividual IRI="#Nikola_Tesla"/>
+    <NamedIndividual IRI="#alternating_current"/>
+  </ObjectPropertyAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+    <IRI>#Nikola_Tesla</IRI>
+    <Literal>M</Literal>
+  </AnnotationAssertion>
+  <Declaration>
+    <NamedIndividual IRI="#Agatha_Christie"/>
+  </Declaration>
+  <Declaration>
+    <NamedIndividual IRI="#Murder_on_the_Orient_Express"/>
+  </Declaration>
+  <Declaration>
+    <ObjectProperty IRI="#wrote"/>
+  </Declaration>
+  <ClassAssertion>
+    <Class IRI="#Person"/>
+    <NamedIndividual IRI="#Agatha_Christie"/>
+  </ClassAssertion>
+  <ClassAssertion>
+    <Class IRI="#Complement"/>
+    <NamedIndividual IRI="#Murder_on_the_Orient_Express"/>
+  </ClassAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="#wrote"/>
+    <NamedIndividual IRI="#Agatha_Christie"/>
+    <NamedIndividual IRI="#Murder_on_the_Orient_Express"/>
+  </ObjectPropertyAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+    <IRI>#Agatha_Christie</IRI>
+    <Literal>F</Literal>
+  </AnnotationAssertion>
+  <Declaration>
+    <NamedIndividual IRI="#Pablo_Picasso"/>
+  </Declaration>
+  <Declaration>
+    <NamedIndividual IRI="#Guernica"/>
+  </Declaration>
+  <Declaration>
+    <ObjectProperty IRI="#painted"/>
+  </Declaration>
+  <ClassAssertion>
+    <Class IRI="#Person"/>
+    <NamedIndividual IRI="#Pablo_Picasso"/>
+  </ClassAssertion>
+  <ClassAssertion>
+    <Class IRI="#Complement"/>
+    <NamedIndividual IRI="#Guernica"/>
+  </ClassAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="#painted"/>
+    <NamedIndividual IRI="#Pablo_Picasso"/>
+    <NamedIndividual IRI="#Guernica"/>
+  </ObjectPropertyAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+    <IRI>#Pablo_Picasso</IRI>
+    <Literal>M</Literal>
+  </AnnotationAssertion>
+  <Declaration>
+    <NamedIndividual IRI="#Mark_Twain"/>
+  </Declaration>
+  <Declaration>
+    <NamedIndividual IRI="#The_Adventures_of_Tom_Sawyer"/>
+  </Declaration>
+  <Declaration>
+    <ObjectProperty IRI="#wrote"/>
+  </Declaration>
+  <ClassAssertion>
+    <Class IRI="#Person"/>
+    <NamedIndividual IRI="#Mark_Twain"/>
+  </ClassAssertion>
+  <ClassAssertion>
+    <Class IRI="#Complement"/>
+    <NamedIndividual IRI="#The_Adventures_of_Tom_Sawyer"/>
+  </ClassAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="#wrote"/>
+    <NamedIndividual IRI="#Mark_Twain"/>
+    <NamedIndividual IRI="#The_Adventures_of_Tom_Sawyer"/>
+  </ObjectPropertyAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+    <IRI>#Mark_Twain</IRI>
+    <Literal>M</Literal>
+  </AnnotationAssertion>
+  <Declaration>
+    <NamedIndividual IRI="#Rosalind_Franklin"/>
+  </Declaration>
+  <Declaration>
+    <NamedIndividual IRI="#the_structure_of_DNA"/>
+  </Declaration>
+  <Declaration>
+    <ObjectProperty IRI="#discovered"/>
+  </Declaration>
+  <ClassAssertion>
+    <Class IRI="#Person"/>
+    <NamedIndividual IRI="#Rosalind_Franklin"/>
+  </ClassAssertion>
+  <ClassAssertion>
+    <Class IRI="#Complement"/>
+    <NamedIndividual IRI="#the_structure_of_DNA"/>
+  </ClassAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="#discovered"/>
+    <NamedIndividual IRI="#Rosalind_Franklin"/>
+    <NamedIndividual IRI="#the_structure_of_DNA"/>
+  </ObjectPropertyAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+    <IRI>#Rosalind_Franklin</IRI>
+    <Literal>F</Literal>
+  </AnnotationAssertion>
+  <Declaration>
+    <NamedIndividual IRI="#Thomas_Jefferson"/>
+  </Declaration>
+  <Declaration>
+    <NamedIndividual IRI="#Monticello"/>
+  </Declaration>
+  <Declaration>
+    <ObjectProperty IRI="#built"/>
+  </Declaration>
+  <ClassAssertion>
+    <Class IRI="#Person"/>
+    <NamedIndividual IRI="#Thomas_Jefferson"/>
+  </ClassAssertion>
+  <ClassAssertion>
+    <Class IRI="#Complement"/>
+    <NamedIndividual IRI="#Monticello"/>
+  </ClassAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="#built"/>
+    <NamedIndividual IRI="#Thomas_Jefferson"/>
+    <NamedIndividual IRI="#Monticello"/>
+  </ObjectPropertyAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+    <IRI>#Thomas_Jefferson</IRI>
+    <Literal>M</Literal>
+  </AnnotationAssertion>
+  <Declaration>
+    <NamedIndividual IRI="#Marie_Antoinette"/>
+  </Declaration>
+  <Declaration>
+    <NamedIndividual IRI="#Louis_XVI_of_France"/>
+  </Declaration>
+  <Declaration>
+    <ObjectProperty IRI="#married"/>
+  </Declaration>
+  <ClassAssertion>
+    <Class IRI="#Person"/>
+    <NamedIndividual IRI="#Marie_Antoinette"/>
+  </ClassAssertion>
+  <ClassAssertion>
+    <Class IRI="#Complement"/>
+    <NamedIndividual IRI="#Louis_XVI_of_France"/>
+  </ClassAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="#married"/>
+    <NamedIndividual IRI="#Marie_Antoinette"/>
+    <NamedIndividual IRI="#Louis_XVI_of_France"/>
+  </ObjectPropertyAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+    <IRI>#Marie_Antoinette</IRI>
+    <Literal>F</Literal>
+  </AnnotationAssertion>
+  <Declaration>
+    <NamedIndividual IRI="#Steve_Jobs"/>
+  </Declaration>
+  <Declaration>
+    <NamedIndividual IRI="#the_iPhone"/>
+  </Declaration>
+  <Declaration>
+    <ObjectProperty IRI="#invented"/>
+  </Declaration>
+  <ClassAssertion>
+    <Class IRI="#Person"/>
+    <NamedIndividual IRI="#Steve_Jobs"/>
+  </ClassAssertion>
+  <ClassAssertion>
+    <Class IRI="#Complement"/>
+    <NamedIndividual IRI="#the_iPhone"/>
+  </ClassAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="#invented"/>
+    <NamedIndividual IRI="#Steve_Jobs"/>
+    <NamedIndividual IRI="#the_iPhone"/>
+  </ObjectPropertyAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+    <IRI>#Steve_Jobs</IRI>
+    <Literal>M</Literal>
+  </AnnotationAssertion>
+  <Declaration>
+    <NamedIndividual IRI="#Emily_Dickinson"/>
+  </Declaration>
+  <Declaration>
+    <NamedIndividual IRI="#poetry"/>
+  </Declaration>
+  <Declaration>
+    <ObjectProperty IRI="#wrote"/>
+  </Declaration>
+  <ClassAssertion>
+    <Class IRI="#Person"/>
+    <NamedIndividual IRI="#Emily_Dickinson"/>
+  </ClassAssertion>
+  <ClassAssertion>
+    <Class IRI="#Complement"/>
+    <NamedIndividual IRI="#poetry"/>
+  </ClassAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="#wrote"/>
+    <NamedIndividual IRI="#Emily_Dickinson"/>
+    <NamedIndividual IRI="#poetry"/>
+  </ObjectPropertyAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+    <IRI>#Emily_Dickinson</IRI>
+    <Literal>F</Literal>
+  </AnnotationAssertion>
+  <Declaration>
+    <NamedIndividual IRI="#Leonardo_da_Vinci"/>
+  </Declaration>
+  <Declaration>
+    <NamedIndividual IRI="#anatomy"/>
+  </Declaration>
+  <Declaration>
+    <ObjectProperty IRI="#discovered"/>
+  </Declaration>
+  <ClassAssertion>
+    <Class IRI="#Person"/>
+    <NamedIndividual IRI="#Leonardo_da_Vinci"/>
+  </ClassAssertion>
+  <ClassAssertion>
+    <Class IRI="#Complement"/>
+    <NamedIndividual IRI="#anatomy"/>
+  </ClassAssertion>
+  <ObjectPropertyAssertion>
+    <ObjectProperty IRI="#discovered"/>
+    <NamedIndividual IRI="#Leonardo_da_Vinci"/>
+    <NamedIndividual IRI="#anatomy"/>
+  </ObjectPropertyAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+    <IRI>#Leonardo_da_Vinci</IRI>
+    <Literal>M</Literal>
+  </AnnotationAssertion>
+</Ontology>

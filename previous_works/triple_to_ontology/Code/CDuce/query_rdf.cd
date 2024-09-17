@@ -1,0 +1,14 @@
+include "ont_rdf_struct.cd";;
+namespace ontology="http://www.semanticweb.org/ontology#";;
+
+
+let ont :? Ontology = load_xml "../XML/ont_rdf.xml";;
+
+let painter = select x 
+              from x in [ont]/Individual,
+                   y in [x]/IndProp
+              where (
+                match y with
+                | <ontology:painted ..>[] -> `true
+                | _ -> `false
+              )
