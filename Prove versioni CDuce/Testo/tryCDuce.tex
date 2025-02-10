@@ -1,0 +1,322 @@
+\documentclass[]{article}
+\usepackage[a4paper,margin=1.7in]{geometry}  % Default page dimensions
+\usepackage{changepage}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{xspace}
+\usepackage{minted}
+\usepackage{xcolor}
+\usepackage{changepage}
+\usepackage{dirtytalk}
+
+\definecolor{LightGray}{gray}{0.95}
+
+\definecolor{DarkGray}{gray}{0.85}
+
+\newcommand{\cduce}{$\mathbb {C}$Duce\xspace}
+
+
+
+%opening
+\title{Prove \cduce}
+\author{Davide Camino}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+	Ho fatto alcune prove cercando di riprodurre gli errori ottenuti da Lorenzo. Per ridurre la complessità ho cercato di usare ontologie mlto semplici e programmi semplicissimi in modo da poter confrontare facilmente diverse versioni del software.
+\end{abstract}
+
+\section{Set Sperimantale}
+Avendo usato un set sperimentale mosto semplice posso riportare qui per intero tutto il codice sia dei programmi in \cduce che dell'ontologia che ho usato; questo secondo me è interessante perchè permette di mostrare le differenze tra le varie versioni in dettaglio, e evidenziare come a seconda della versione una certo venga interpetato con diversi tag.
+
+\subsection{Codice}
+
+\begin{adjustwidth}{-1.5cm}{-1.5cm}	
+	\begin{minipage}{\linewidth} 
+		\begin{minted}[frame=lines,
+			framesep=2mm,
+			baselinestretch=1.2,
+			bgcolor=LightGray,
+			fontsize=\footnotesize,
+			tabsize=4,
+			linenos]{ocaml}
+			
+	namespace owl="http://www.w3.org/2002/07/owl#"
+	namespace xml="http://www.w3.org/XML/1998/namespace"
+	namespace xsd="http://www.w3.org/2001/XMLSchema#"
+	namespace rdfs="http://www.w3.org/2000/01/rdf-schema#"
+	namespace skos="http://www.w3.org/2004/02/skos/core#"
+	namespace rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#";;
+	
+	let poeople  = load_xml "persone.rdf";;
+	
+	type Ontology = <rdf:RDF xml:base=String> [ AnyXml* ];;
+	
+	let ont :? Ontology = poeople;;
+	
+		\end{minted}
+	\end{minipage}
+\end{adjustwidth}
+
+Il codice è molto semplice, da linea 1 a 7 si definiscono i namespaces, si carica un foglio XML (riga 9) si definisce la struttura di un'ontologia semlicissima specificando solo il nodo radie che ha come figli nodi di tipo \mintinline{ocaml}|AnyXml| (riga 11) infini si valuta se il tipo di \mintinline{ocaml}|people| è proprio \mintinline{ocaml}|Ontology|.
+
+\subsection{Ontologia}
+
+\begin{adjustwidth}{-1.5cm}{-1.5cm}	
+	\begin{minipage}{\linewidth} 
+	\begin{minted}[frame=lines,
+		framesep=2mm,
+		baselinestretch=1.2,
+		bgcolor=LightGray,
+		fontsize=\footnotesize,
+		tabsize=4,
+		linenos]{ocaml}
+		
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.semanticweb.org/dadi/people/"
+	xml:base="http://www.semanticweb.org/dadi/people/"
+	xmlns:owl="http://www.w3.org/2002/07/owl#"
+	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+	xmlns:xml="http://www.w3.org/XML/1998/namespace"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+	xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+	<owl:Ontology rdf:about="http://www.semanticweb.org/dadi/people"/>
+	
+	<owl:Class rdf:about="http://www.semanticweb.org/dadi/people#Cani"/>
+	
+	<owl:Class rdf:about="http://www.semanticweb.org/dadi/people#People"/>
+	
+	<owl:NamedIndividual rdf:about="http://www.semanticweb.org/dadi/people#fido">
+		<rdf:type rdf:resource="http://www.semanticweb.org/dadi/people#Cani"/>
+	</owl:NamedIndividual>
+	
+	<owl:NamedIndividual rdf:about="http://www.semanticweb.org/dadi/people#gianni">
+		<rdf:type rdf:resource="http://www.semanticweb.org/dadi/people#People"/>
+	</owl:NamedIndividual>
+	
+	<owl:NamedIndividual rdf:about="http://www.semanticweb.org/dadi/people#mario">
+		<rdf:type rdf:resource="http://www.semanticweb.org/dadi/people#People"/>
+	</owl:NamedIndividual>
+	
+	<owl:NamedIndividual rdf:about="http://www.semanticweb.org/dadi/people#pluto">
+		<rdf:type rdf:resource="http://www.semanticweb.org/dadi/people#Cani"/>
+	</owl:NamedIndividual>
+</rdf:RDF>
+
+	\end{minted}
+\end{minipage}
+\end{adjustwidth}
+
+Anche l'ontologia è davvero ridotta all'osso, abbiamo due classi che descrivono persone e cani, per ciascuna classe 2 individui, rispettivamente Gianni e Mario per le persone e Fido e Pluto per i cani.
+
+\subsection{Versioni di \cduce}
+Per gli esperimenti ho usato 3 differenti versioni di \cduce:
+\begin{description}
+	\item[Ufficiale]  è l'ultima versione stabile; i problemi di questa sono quelli noti e scritti nella tesi, in particolare non siamo mai riusciti ad interfacciarci con Ocaml inoltre il processo di compilazione come suggerito dal sito ci è stato sconsigliato da Kim stesso
+	\item[Repo Kim] ho provato ad usare esattamente la stessa versione che Kim ha usato per costruie gli esempi che ci ha mandato
+	\item[Attuale dev] l'ultima versione di cui è stato fatto il commit dul branch dev.
+\end{description}
+
+\section{Esperimenti}
+
+\subsection{Versione repo Kim}
+Comincio con questa versione perché ho dovuto scartarla subito, infatti quado provavo ad eseguire la riga 11 (dove si definisce la struttura dell'ontologia) senza aver esegiuto la riga 7 veniva scatenato un errore interno.
+
+\begin{adjustwidth}{-1.5cm}{-1.5cm}	
+	\begin{minipage}{\linewidth} 
+		\begin{minted}[frame=lines,
+			framesep=2mm,
+			baselinestretch=1.2,
+			bgcolor=DarkGray,
+			fontsize=\footnotesize,
+			tabsize=4,
+			linenos]{bash}
+	
+	>type Ontology = <rdf:RDF xml:base=String> [ AnyXml* ];;
+	
+	Characters 17-24: Runtime error:
+		Internal error: Failure("Todo: 39")
+	Backtrace:
+	
+		\end{minted}
+	\end{minipage}
+\end{adjustwidth}
+Ciò che ci aspettiamo invece è che se proviamo ad definire un elemento senza aver definito il namespace l'errore sia appunto qualcosa di simile a \mintinline{bash}|Undefined namespace|. 
+
+Questo, il fatto che il codice di errore sia \mintinline{bash}|"Todo: 39"| e non ci sia nessuna backtrace mi fa pensare, come giustamente suggerito da Lorenzo, che questa feature sia ancora da implementare.
+
+\subsection{Versione attuale dev}
+In questa versione eseguendo la linea 11 senza aver definito i namespace otteniamo l'errore che ci aspettiamo:
+
+\begin{adjustwidth}{-1.5cm}{-1.5cm}	
+	\begin{minipage}{\linewidth} 
+		\begin{minted}[frame=lines,
+			framesep=2mm,
+			baselinestretch=1.2,
+			bgcolor=DarkGray,
+			fontsize=\footnotesize,
+			tabsize=4,
+			linenos]{bash}
+			
+	> type Ontology = <rdf:RDF xml:base=String> [ AnyXml* ];;
+	
+	Characters 17-24: Runtime error:
+		Undefined namespace prefix rdf
+				
+		\end{minted}
+	\end{minipage}
+\end{adjustwidth}
+
+Questo è un buon inizio, ho provato allora ad esegiure la riga 11 dopo aver definito il namespace e il comando è stato accettato correttamente.
+
+Adesso, prima di provare a caricare i dati in formato XML, proviamo a costruire un elemento di tipo \mintinline{ocaml}|Ontology| direttamente in \cduce; tradotto in codice significa:
+
+\begin{adjustwidth}{-1.5cm}{-1.5cm}	
+	\begin{minipage}{\linewidth} 
+		\begin{minted}[frame=lines,
+			framesep=2mm,
+			baselinestretch=1.2,
+			bgcolor=LightGray,
+			fontsize=\footnotesize,
+			tabsize=4,
+			linenos]{ocaml}
+			
+	namespace rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#";;
+	type Ontology = <rdf:RDF xml:base=String> [ AnyXml* ];;
+	let myOnt = <rdf:RDF xml:base="la mia ontologia"> [ ];;
+	let ont :? Ontology = myOnt;;
+			
+		\end{minted}
+	\end{minipage}
+\end{adjustwidth}
+
+Anche l'esecuzione di questo breve pezzo va a buon fine.
+
+\newpage
+
+Siamo ora pronti a definire tutti i amespace e a caricare il file XML. Il risultato è il seguente:
+
+\begin{adjustwidth}{-1.5cm}{-1.5cm}	
+	\begin{minipage}{\linewidth} 
+		\begin{minted}[frame=lines,
+			framesep=2mm,
+			baselinestretch=1.2,
+			bgcolor=DarkGray,
+			fontsize=\footnotesize,
+			tabsize=4,
+			linenos]{bash}
+			
+	> let poeople  = load_xml "persone.rdf";;
+	
+	val poeople : AnyXml = <ns1:RDF
+		base="http://www.semanticweb.org/dadi/people/"
+		rdfs="http://www.w3.org/2000/01/rdf-schema#"
+		xml="http://www.w3.org/XML/1998/namespace"
+		rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+		xsd="http://www.w3.org/2001/XMLSchema#"
+		owl="http://www.w3.org/2002/07/owl#">[
+		<ns1:Ontology about="http://www.semanticweb.org/dadi/people">[ ]
+		<ns1:Class about="http://www.semanticweb.org/dadi/people#Cani">[ ]
+		<ns1:Class about="http://www.semanticweb.org/dadi/people#People">[ ]
+		<ns1:NamedIndividual
+			about="http://www.semanticweb.org/dadi/people#fido">[
+			<ns1:type resource="http://www.semanticweb.org/dadi/people#Cani">[ ]
+			]
+		<ns1:NamedIndividual
+			about="http://www.semanticweb.org/dadi/people#gianni">[
+			<ns1:type resource="http://www.semanticweb.org/dadi/people#People">[ ]
+			]
+		<ns1:NamedIndividual
+			about="http://www.semanticweb.org/dadi/people#mario">[
+			<ns1:type resource="http://www.semanticweb.org/dadi/people#People">[ ]
+			]
+		<ns1:NamedIndividual
+			about="http://www.semanticweb.org/dadi/people#pluto">[
+			<ns1:type resource="http://www.semanticweb.org/dadi/people#Cani">[ ]
+			]
+		]
+			
+			
+		\end{minted}
+	\end{minipage}
+\end{adjustwidth}
+
+Qui sorgono i problemi, questo file infatti non può essere parsificato, dato che compaiono di nuovo i namespace segnaposto \mintinline{bash}|ns1|. Questi compaiono sia che siano stati definiti i namespace sia che non lo siano stati. Il problema più grave però non è la presenza dei namespaces segnaposo, ma il fatto che lo stesso namespaces segnaposto faccia riferimento a differenti namespaces.
+
+Guardiamo riga 14 e 16 e confrontiamole con le righe 16 e 17 dell'ontologia. I namesaces diversi \mintinline{bash}|owl| e \mintinline{bash}|rdf| dell'ontologia sono stati entrabi convertiti in \mintinline{bash}|ns1| rendendoli a tutti gli effetti indistinguibili. Una cosa del genere non può essere parsificata.
+
+\subsection{Versione Stabile}
+Proviamo ora la versione stabile, quella che ho usato per scrivere la tesi. Qui ci aspettiamo che tutto funzioni correttamente, ma facciamo questo test per evidenziare le differenze ta quelli che sono i messaggi che ci aspetiamo di riceve e quelli che invece si ricevono con le nuove versioni. Nuovamente proviamo a definire la struttura dell'otologia (riga 7 codice pagina 1) senza aver definito i namespaces, e come per la versione dev riceviamo un messaggio di errore coerente.
+
+Proiamo allora a caricare il file XML e cerciamo le differenze tra il risultato di questo caricamento e del precedente.
+
+\begin{adjustwidth}{-1.5cm}{-1.5cm}	
+	\begin{minipage}{\linewidth} 
+		\begin{minted}[frame=lines,
+			framesep=2mm,
+			baselinestretch=1.2,
+			bgcolor=DarkGray,
+			fontsize=\footnotesize,
+			tabsize=4,
+			linenos]{bash}
+			
+	> let poeople  = load_xml "persone.rdf";;
+	
+	val poeople : AnyXml = <rdf:RDF
+		xml:base="http://www.semanticweb.org/dadi/people/">[
+		<owl:Ontology
+			rdf:about="http://www.semanticweb.org/dadi/people">[
+			]
+		<owl:Class
+			rdf:about="http://www.semanticweb.org/dadi/people#Cani">[
+			]
+		<owl:Class
+			rdf:about="http://www.semanticweb.org/dadi/people#People">[
+			]
+		<owl:NamedIndividual
+			rdf:about="http://www.semanticweb.org/dadi/people#fido">[
+				<rdf:type
+					rdf:resource="http://www.semanticweb.org/dadi/people#Cani">[
+					]
+			]
+		<owl:NamedIndividual
+			rdf:about="http://www.semanticweb.org/dadi/people#gianni">[
+				<rdf:type
+					rdf:resource="http://www.semanticweb.org/dadi/people#People">[
+					]
+			]
+		<owl:NamedIndividual
+			rdf:about="http://www.semanticweb.org/dadi/people#mario">[
+				<rdf:type
+					rdf:resource="http://www.semanticweb.org/dadi/people#People">[
+					]
+			]
+		<owl:NamedIndividual
+			rdf:about="http://www.semanticweb.org/dadi/people#pluto">[
+				<rdf:type
+					rdf:resource="http://www.semanticweb.org/dadi/people#Cani">[
+					]
+			]
+		]			
+			
+		\end{minted}
+	\end{minipage}
+\end{adjustwidth}
+
+Come possiamo vedere qui tutti i namespace sono ricnoscuti correttamente, a prescindere che siano o meno stati dichiarati preventivamente. Questo è dovuto al fatto che \cduce è in grado di leggerli dallo schema XML riportato all'inizio dell'ontologia (righe da 5 a 9 del codice a pag 2). 
+
+Inoltre dato che queste informazioni riguardano lo schema XML e non i dati del foglio e di conseguenza non vengono stampati, vengono invece riportati nell'output della versione dev, infatti se guardiamo le righe da 6 a 9 dell'output di pagina 4 queste sono assenti (giustamente) dall'output della vrersione stabile.
+
+Ovviamente in questa versione possiamo esegiure tutto il codice riportato a pagina 1 senza scatenare errori e il documento XML viene parsificato correttamente come un elemento di tipo \mintinline{ocaml}|Ontology|.
+
+\section{Conclusioni}
+Ho fatto altri test \say{off-camera} ma nulla è servito, le nuove versioni non sembrano riconoscere affatto i naespaces e non sono riuscto in alcun modo a caricare un documento senza i \mintinline{bash}|ns1| e di conseguenza non sono riuscito a parsificare l'XML con le uove versioni.
+
+Il fatto che dalla versione usat da Kim per gli esempi  quella attuale alcuni errori sono stati corretti mi fa pensare che sia solo questione di tempo prima che si possa usare la versione dev per i nostri esperimenti. Fino ad allora purtoppo credo che saremo vincolati ad usare la versione stable con tutti i suoi problemi.
+
+Si può però provare ancora a collegare OCaml a \cduce seguendo le istruzioni sul repo di Kim che spiega secondo molto meglio come fare rispetto alla guida sul sito, inoltre c'è anche l'esempio con i Makefile. 
+
+\end{document}

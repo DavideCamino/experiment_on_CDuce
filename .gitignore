@@ -3,3 +3,7 @@ bin/*
 documents/*.log
 documents/*.aux
 documents/*.gz
+Prove versioni CDuce/Testo/*.log
+Prove versioni CDuce/Testo/*.aux
+Prove versioni CDuce/Testo/*.gz
+Prove versioni CDuce/Testo/_minted-tryCDuce
