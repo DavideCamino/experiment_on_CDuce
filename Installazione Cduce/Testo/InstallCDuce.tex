@@ -1,0 +1,216 @@
+\documentclass[]{article}
+\usepackage[a4paper,margin=1.7in]{geometry}  % Default page dimensions
+\usepackage{changepage}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{xspace}
+\usepackage{minted}
+\usepackage{xcolor}
+\usepackage{changepage}
+\usepackage{dirtytalk}
+\usepackage{hyperref}
+
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	filecolor=magenta,      
+	urlcolor=cyan,
+	pdftitle={Overleaf Example},
+	pdfpagemode=FullScreen,
+}
+
+\definecolor{LightGray}{gray}{0.95}
+
+\definecolor{DarkGray}{gray}{0.85}
+
+\newcommand{\cduce}{$\mathbb {C}$Duce\xspace}
+
+\setminted{
+frame=lines,
+framesep=2mm,
+baselinestretch=1.2,
+bgcolor=LightGray,
+fontsize=\footnotesize,
+tabsize=4,
+linenos=true,
+}
+
+
+%opening
+\title{Installare \cduce}
+\author{Davide Camino}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+	Vediamo come istallare alcune versioni di \cduce, sfuttando gli \textit{switch} di opam, ovvero degli ambienti isolati di OCaml.
+\end{abstract}
+
+\section{Introduzione}
+Attraverso gli \textit{switch} opam consente di gestire differenti installazioni che possono coesistere le une con le altre. La filosofia è simile agli ambienti virtuali di Python (\textit{virtualenv}). Ogni \textit{switch} è indipendente dagli altri, può avere i suoi pacchetti e le sue configurazioni. La cosa più ineressante ai nostri fini è la pssibilità di ogni \textit{switch} di avere la propria versione di OCaml con le sue librerie e i suoi binari.
+
+Quello che vogliamo fare quindi è avere uno \textit{switch} per ogni installazione di \cduce, senza doverci preoccupare di gestire le compatibilità perché andremo ad usare in ogni \textit{switch} la versione di OCaml che ci serve per compilare la versione di \cduce che vogliamo installare.
+\subsubsection*{Visualizzare gli \textit{switch}}
+Una volta installao opam verrà creato uno \textit{switch} di default possiamo visualizzare tutti gli switch presenti con:
+\begin{minted}{bash}
+$ opam switch list
+#   switch   compiler      description
+->  default  ocaml.4.13.1  default
+\end{minted}
+\subsubsection*{Creare un nuovo \textit{switch}}
+Per crare un nuovo \textit{switch} è sufficiente:
+\begin{minted}{bash}
+$ opam switch create my_project <compiler-version>
+\end{minted}
+Adesso entriamo nel nuovo \textit{switch} con:
+\begin{minted}{bash}
+$ opam switch my_project
+\end{minted}
+\subsubsection*{Eliminare uno \textit{switch}}
+Per eliminare dal disco uno switch non più necessario è sufficiente eseguire:
+\begin{minted}{bash}
+$ opam switch remove my_project
+\end{minted}
+
+\section{Installare \cduce}
+\subsection{Versione Stable Polymorphic}
+Questa è la versione il cui codice si trova attualmente nel branch main, gli ultimi aggiornamenti rsalgono ad un paio di anni fa e teoricamente le istruzioni per l'installazione sono quelle presenti sul sito (\href{https://www.cduce.org/}{www.cduce.org}).
+
+Purtoppo da allora il sito e il software non sono stai aggiornati, mentre le dipendenze si, ropedo la compatibilità e rendendo impossibile seguire quelle istruzioni.
+
+Per cercare di ripristinare corrispondenzza tra versione di \cduce e di OCaml ho crcato quale fosse la data dell'ultimo commit sul branch main e ho scaricato la versione di OCaml precedente alla data dell'ultimo commit, sperando in questo modo di ripristinare la compatibilità tra i linguaggi. L'idea era giusta e sono riuscito a intallare \cduce come pacchetto di OCaml in uno \textit{switch} apposito.
+
+È particolarmente importante installare \cduce come pacchetto di OCaml e non semplicemente compilarlo per avere un eseguibile perché (come ci ha spiegato Kim) nel primo modo si ha una interazione molto più forte tra i due linguaggi potendo richiamare l'uno dall'altro e viceversa.
+
+Vediamo passo passo come installare questa versione di \cduce
+
+\subsubsection*{Creare e configurare \textit{switch}}
+Creiamo un nuovo \textit{switch} che ospiterà come pacchetto \cduce
+\begin{minted}{bash}
+$ opam switch create CDuce_poly_stable 4.13.1
+\end{minted}
+Il nome \texttt{CDuce\_poly\_stable} è assolutamente arbitrario, mentre la versione 4.13.1 risale al 01/10/2021, cioè è l'ultima versione precedente all'ultimo commit sul branch main.  Adesso dovremmo trovarci nello \textit{switch} appena creato, possiamo verificarlo con \mintinline{bash}|$ opam switch| e nel caso non ci trovassimo nello \textit{switch} giusto possiamo andarci con \mintinline{bash}|opam switch CDuce_poly_stable|.
+
+Installiamo ora tutti i pacchetti necessari:
+\begin{minted}{bash}
+$ opam install conf-libssl dune js_of_ocaml-compiler \
+	js_of_ocaml-ppx markup menhir menhirLib ocaml \
+	ocaml-compiler-libs ocaml-expat ocamlfind ocamlnet \
+	ocurl odoc pxp sedlex zarith zarith_stubs_js
+\end{minted}
+Opam si preoccuperà di installare tutte le dipendenze necessarie, se le dipendenze vanno installate col package manager della tua distro possono essere necessari i privilegi di amministratore (\mintinline{bash}|sudo|) che chiederà direttamente opam.
+
+\subsubsection*{Installare \cduce}
+Come suggerito da Kim installiamo \cduce facendo il \textit{clone} del repository 
+\begin{minted}{bash}
+$ git clone https://gitlab.math.univ-paris-diderot.fr/cduce/cduce.git
+$ cd cduce
+\end{minted}
+Prima di procedere esploriamo il contenuto della cartella ad esempio con il comando  \mintinline{bash}|ls|. Possiamo notare 3 file con esetenione opam (\texttt{cduce-tools.opam}, \texttt{cduce-types.opam} e \texttt{cduce.opam}) questi saranno i pacchetti che chiederemo ad opam di installare.
+
+Siamo pronti per installare \cduce, per farlo è sufficiente:
+\begin{minted}{bash}
+$ opam pin .
+\end{minted}
+Opam riconoscerà i pacchetti presenti nella cartella (con estensione opam) e cercherà di installarli. Durante l'installazione opam chiederà conferma prima di procedere, rispondendo di sì a tutte le domande e dopo aver atteso il tempo di compilazione avremo uno \textit{switch} con \cduce installato.
+
+Per verificare che tutto sia andato a buon fine possiamo ora eseguire:
+\begin{minted}{bash}
+$ cduce --version
+CDuce, version poly-devel-97-g3cba0c5
+Using OCaml 4.13.1 compiler
+Supported features: 
+- netclient: Load external URLs with netclient
+- pxp: PXP XML parser
+- netstring: Load HTML document with netstring
+- system: System calls
+- ocaml: OCaml interface
+\end{minted}
+
+È importante notare che \cduce è adesso stato installato come pacchetto in uno \textit{switch}, sarà opam che si preoccuperà di cercare l'eseguibile per noi, quindi possiamo invocare il comando   \mintinline{bash}|cduce| in qualsiasi punto del filesystem.
+
+\subsection{Versione attuale Dev}
+Questa è la versione che si trova sul branch dev ed è quella sulla quale sta attualmente lavorando KIm. Di questa sono già pesenti le istruzioni, le riporto qui in forma stringata solo per completezza.
+\subsubsection*{Creare e configurare \textit{switch}}
+Creiamo lo \textit{switch} con la versione correta del compilatore
+\begin{minted}{bash}
+$ opam switch create CDuce_poly_dev 4.14.2
+\end{minted}
+\newpage
+Ci spostimao nello \textit{switch} (se necessario) e installiamo tutti i pacchetti che servono per compilare \cduce.
+\begin{minted}{bash}
+$ opam switch CDuce_poly_dev
+$ opam install conf-libssl dune js_of_ocaml-compiler \
+js_of_ocaml-ppx markup menhir menhirLib ocaml \
+ocaml-compiler-libs ocaml-expat ocamlfind ocamlnet \
+ocurl odoc pxp sedlex zarith zarith_stubs_js
+\end{minted}
+\subsubsection*{Installare \cduce}
+In una nuova posizione del filesystem rispetto alla cartella precedente facciamo il \textit{clone} del repository e ci spostiamo sul branch dev
+\begin{minted}{bash}
+$ git clone https://gitlab.math.univ-paris-diderot.fr/cduce/cduce.git
+$ cd cduce
+$ git checkout dev
+\end{minted}
+Installiamo \cduce con 
+\begin{minted}{bash}
+$ opam pin .
+\end{minted}
+Nuovamente sarà necessario rispondere di sì a tutte le domande e attendere la compilazione del pacchetto. Una volta terminato il processo possiamo nuovamente verificare l'installazione con
+\begin{minted}{bash}
+$ cduce --version
+CDuce, version poly-devel-319-g3e36d3f
+Using OCaml 4.14.2 compiler
+Supported features: 
+- netclient: Load external URLs with netclient
+- pxp: PXP XML parser
+- netstring: Load HTML document with netstring
+- system: System calls
+- curl: Load external URLs with curl
+- expat: Expat XML parser
+- ocaml: OCaml interface
+- markup: Markup.ml XML and HTML parser
+\end{minted}
+\subsection{Passare da una versione all'altra}
+Possiamo sfruttare gli \textit{switch} per passare comodamente da una versione all'altra di \cduce. Ogni versione infatti è legata al suo \textit{switch} e quando usiamo il comando \mintinline{bash}|cduce| viene selezionato l'eseguibile installato nello \textit{switch} in cui siamo. È sufficiente spostarsi nello \textit{switch} in cui si è installata la versione di \cduce che si desidera utilizzare (\mintinline{bash}|opam switch <nome_switch>|) e invocare il comando \mintinline{bash}|cduce|.
+
+\section{Esperimenti}
+Sulla versione che qui è chaiamata \textbf{attuale dev} non ho fatto ulteriori esperimenti. Ho però fatto dei test sulla versione \textbf{stable}.
+\subsection{Test base}
+Ho provato a ripetere l'esperimento che avevamo già fatto negli scorsi giorni: caricare una semplicissima ontologia e farne il parsing. Il codice e l'ontologia si trovano qui: \href{https://github.com/DavideCamino/experiment_on_CDuce/tree/main/Prove%20versioni%20CDuce/Codice}{github.com/DavideCamino/experiment\_on\_CDuce}.
+
+Questo test è andato a buon fine. Sono allora passato a verificare funzionalità più avanzate.
+\subsection{Da triple ad ontologia}
+In questo set di test ho provato a:
+\begin{itemize}
+	\item caricare un file XML
+	\item fare il parsing di un documento XML
+	\item definire la struttura di un'ontologia
+	\item trasformare il documento XML in un'ontologia
+	\item esportare l'ontologia appena creata in modo da poterla visualizzare con strumenti appositi (protegè)
+\end{itemize}
+Le prove fatte ripercorrono gli esperimenti che avevamo fatto per presentare \cduce ad una conferenza sui linguaggi funzionali, tutto il codicce e una breve relazione del lavoro si trovano qui: \href{https://github.com/DavideCamino/Triple_to_Ontology}{github.com/DavideCamino/Triple\_to\_Ontology}.
+
+Tutti i test hanno avuto esito positivo, il caricamento non ha presentato strane ripetizioni dei namespaces, la definizione della struttura dell'ontologia e il parsing sono avenuti correttamente, infine anche il dump su file è stato fatto con successo (ancora come già succedeva nelle altre versioni tutto l'output si trova su una sola riga, ma non è un grande problema).
+
+\subsection{Integrazione con OCaml}
+Seguendo quanto riportato sulla guida di Kim (\href{https://github.com/Tchou/cduce-sample}{github.com/Tchou/cduce-sample}) ho provato a far interagire OCaml con \cduce. 
+
+Ho provato a seguire fedelmente l'esempio che ha riportato Kim nel repository indicato sopra e tutto ha funzionato correttamente. Si riescono ad usare in \cduce funzioni della libreria standard di OCaml, si possono integrare in \cduce funzioni arbitrarie scritte in OCaml e si possono richiamare funzioni scritte in \cduce in OCaml. È infine possibile compilare  il codice sorgente per ottenere un eseguibile che può essere lacianto senza bisogno di \mintinline{bash}|cduce --run <nome-eseguibile>.cdo|.
+
+ È importante sottolineare ancora una volta che l'integrazione è possibile solo perché abbiamo installato \cduce come pacchetto all'interno di uno \textit{switch} di OCaml, se avessimo ottenuto direttamente un eseguibile compilando i sorgenti (anche per questa procedura è possibile trovare le istruzioni su \href{https://www.cduce.org/}{www.cduce.org}) non avremmo potuto far interagire i due strumenti.
+
+\section{Lavoro futuro}
+Ora che abbiamo una versione relativamente stabile in cui sembra funzionare tutto potrebbe essere interessante cercare di seguire le istruzioni di Kim per creare dei makefile organizzati dei nostri sorgeni, in questo modo possiamo compilare il codice scritto in \cduce con facilità.
+
+Inoltre potrebbe essere interessante cercare di integrare i due linguaggi (OCaml e \cduce) anche nei nostri progetti. OCaml è infatti vastissimo e ci sono già un sacco di librerie che potenzialmente potrebbero tronarci utili, avere la possibilità di sfruttare tutta la potenza di OCaml mi sembra una strada che può valer la pena esplorare.
+
+\section{Conclusioni}
+Siamo ora in grado di creare nuovi \textit{switch} dove testare le nuove versioni di \cduce man mano che lo sviluppo procede.
+
+Abbiamo individuato una versione che potrebbe fungere da baseline nel quale sembrerebbe che tutto funzioni correttamente e che possiamo usare mentre vengono sviluppate nuve funzionalità.
+
+Siamo quindi in grado di avere un ambiente stabile nel quale testare tutte le nuove idee, dal punto di vista del setup del linguaggio questa confgurazione mi sembra la migliore che possiamo avere al momento, mi sembra inoltre sufficientemente funzionale da poterci permettere di concentrarci sul \textbf{vero} lavoro di ricerca.
+\end{document}
